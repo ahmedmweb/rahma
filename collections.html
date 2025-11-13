@@ -14,8 +14,6 @@ body {
     background-repeat: no-repeat;
     color: #fff;
 }
-
-/* التابات الرئيسية */
 .tabs-box {
     background-color: rgba(0,0,0,0.6);
     padding: 15px 10px;
@@ -28,57 +26,40 @@ body {
     max-width: 100%;
     box-sizing: border-box;
 }
-
 .tab {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 8px;
-    background-color: rgba(255, 215, 0, 0.2);
-    color: #FFF;
+    background-color: rgba(255, 215, 0, 0.2); 
+    color: #FFF; 
     font-weight: bold;
-    transition: background 0.3s;
     display: flex;
     align-items: center;
 }
-
-.tab.active {
-    background-color: rgba(255, 215, 0, 0.4);
-    color: #fff;
-}
-
+.tab.active { background-color: rgba(255, 215, 0, 0.4); color: #fff; }
 .arrow { margin-left: 5px; cursor: pointer; }
-
-/* التابات الفرعية */
-.tab-content { display: none; margin: 10px auto; max-width: 100%; }
-.sub-tabs { display: flex; flex-direction: column; gap: 5px; margin: 0 0 10px 0; }
+.tab-content { display: none; max-width: 100%; margin: 5px auto 20px; padding: 0; }
+.sub-tabs { display: flex; flex-direction: column; gap: 5px; margin: 0; }
 .sub-tab {
-    padding: 4px 10px;
-    font-size: 14px;
-    border-radius: 4px;
-    background-color: rgba(0,0,0,0.5);
-    color: #fff;
-    display: inline-block;
-    cursor: pointer;
-    transition: background 0.6s;
+    padding: 4px 10px; font-size: 14px; border-radius: 4px;
+    background-color: rgba(0,0,0,0.5); color: #fff;
+    display: inline-block; cursor: pointer; transition: background 0.6s;
 }
 .sub-tab.active { background-color: rgba(255,215,0,0.6); color: #000; }
 
-/* تخطيط الجاليرى */
-.gallery-container { display: flex; gap: 20px; }
-.gallery-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.gallery-list img { cursor: pointer; width: 100px; border-radius: 6px; }
-.gallery-display img { max-width: 500px; max-height: 400px; border-radius: 8px; }
-
-/* مخفي افتراضياً */
-.gallery-container { display: none; }
+/* جاليري الصور */
+.gallery-container { display: flex; gap: 15px; }
+.gallery-thumbs { display: flex; flex-direction: column; gap: 10px; }
+.gallery-thumbs img { width: 80px; cursor: pointer; border-radius: 6px; border: 2px solid transparent; }
+.gallery-thumbs img.active { border-color: #FFD700; }
+.gallery-main img { max-width: 600px; max-height: 400px; border-radius: 8px; }
 
 @media (max-width:768px){
-    .tab { padding: 8px 12px; font-size: 14px; }
-    .sub-tab { padding: 3px 8px; font-size: 12px; }
+    .tab{padding:8px 12px; font-size:14px;}
+    .sub-tab{padding:3px 8px; font-size:12px;}
+    .gallery-container{flex-direction:column;}
+    .gallery-thumbs{flex-direction:row; overflow-x:auto;}
+    .gallery-thumbs img{width:60px;}
 }
 </style>
 </head>
@@ -95,134 +76,117 @@ body {
 <!-- MEN -->
 <div class="tab-content" id="men">
     <div class="sub-tabs">
-        <div class="sub-tab" data-gallery="men-sweat1.jpg">Sweatshirt</div>
-        <div class="sub-tab">Men Pullover</div>
-        <div class="sub-tab">Jacket</div>
-        <div class="sub-tab">T-Shirts</div>
-        <div class="sub-tab">Shirts</div>
-        <div class="sub-tab">Pants</div>
-    </div>
-    <div class="gallery-container">
-        <div class="gallery-list" id="men-sweat-list">
-            <img src="images/men-sweat1.jpg" alt="men-sweat1">
-            <img src="images/men-sweat2.jpg" alt="men-sweat2">
-        </div>
-        <div class="gallery-display" id="men-sweat-display"></div>
+        <div class="sub-tab active" data-images="men-sweatshirt1.jpg,men-sweatshirt2.jpg">Sweatshirt</div>
+        <div class="sub-tab" data-images="">Pullover</div>
+        <div class="sub-tab" data-images="">Jacket</div>
+        <div class="sub-tab" data-images="">T-Shirts</div>
+        <div class="sub-tab" data-images="">Shirts</div>
+        <div class="sub-tab" data-images="">Pants</div>
     </div>
 </div>
 
 <!-- WOMEN -->
 <div class="tab-content" id="women">
     <div class="sub-tabs">
-        <div class="sub-tab" data-gallery="women-paj1.jpg">Pajamas</div>
-        <div class="sub-tab" data-gallery="women-paj2.jpg">Basics</div>
-        <div class="sub-tab">Basics Jacket</div>
-        <div class="sub-tab">T-Shirts</div>
-        <div class="sub-tab">Shirts</div>
-        <div class="sub-tab">Pants</div>
-    </div>
-    <div class="gallery-container">
-        <div class="gallery-list" id="women-paj-list">
-            <img src="images/women-paj1.jpg" alt="women-paj1">
-            <img src="images/women-paj2.jpg" alt="women-paj2">
-        </div>
-        <div class="gallery-display" id="women-paj-display"></div>
+        <div class="sub-tab active" data-images="women-pajamas1.jpg,women-pajamas2.jpg">Pajamas</div>
+        <div class="sub-tab" data-images="">Basics</div>
+        <div class="sub-tab" data-images="">Basics Jacket</div>
+        <div class="sub-tab" data-images="">T-Shirts</div>
+        <div class="sub-tab" data-images="">Shirts</div>
+        <div class="sub-tab" data-images="">Pants</div>
     </div>
 </div>
 
 <!-- BOYS -->
 <div class="tab-content" id="boys">
     <div class="sub-tabs">
-        <div class="sub-tab" data-gallery="boys-sweat1.jpg">Boy’s SweatShirt</div>
-        <div class="sub-tab">Sweatpants</div>
-        <div class="sub-tab">Shirts</div>
-        <div class="sub-tab">Pants</div>
-    </div>
-    <div class="gallery-container">
-        <div class="gallery-list" id="boys-sweat-list">
-            <img src="images/boys-sweat1.jpg" alt="boys-sweat1">
-            <img src="images/boys-sweat2.jpg" alt="boys-sweat2">
-        </div>
-        <div class="gallery-display" id="boys-sweat-display"></div>
+        <div class="sub-tab active" data-images="boys-sweatshirt1.jpg,boys-sweatshirt2.jpg">Sweatshirt</div>
+        <div class="sub-tab" data-images="">Sweatpants</div>
+        <div class="sub-tab" data-images="">Shirts</div>
+        <div class="sub-tab" data-images="">Pants</div>
     </div>
 </div>
 
 <!-- GIRLS -->
 <div class="tab-content" id="girls">
     <div class="sub-tabs">
-        <div class="sub-tab" data-gallery="girls-sweat1.jpg">Girl’s SweatShirt</div>
-        <div class="sub-tab">Girl’s Shirt</div>
-        <div class="sub-tab">Sweatpants</div>
-        <div class="sub-tab">Pants</div>
-        <div class="sub-tab">Pajama</div>
-    </div>
-    <div class="gallery-container">
-        <div class="gallery-list" id="girls-sweat-list">
-            <img src="images/girls-sweat1.jpg" alt="girls-sweat1">
-            <img src="images/girls-sweat2.jpg" alt="girls-sweat2">
-        </div>
-        <div class="gallery-display" id="girls-sweat-display"></div>
+        <div class="sub-tab active" data-images="girls-sweatshirt1.jpg,girls-sweatshirt2.jpg">Sweatshirt</div>
+        <div class="sub-tab" data-images="">Shirt</div>
+        <div class="sub-tab" data-images="">Sweatpants</div>
+        <div class="sub-tab" data-images="">Pants</div>
+        <div class="sub-tab" data-images="">Pajama</div>
     </div>
 </div>
 
 <!-- BABY -->
 <div class="tab-content" id="baby">
     <div class="sub-tabs">
-        <div class="sub-tab" data-gallery="baby-sweat1.jpg">BABY SweatShirt</div>
-        <div class="sub-tab">Sweatpants</div>
-        <div class="sub-tab">Shirts</div>
-        <div class="sub-tab">Pants</div>
+        <div class="sub-tab active" data-images="baby-sweatshirt1.jpg,baby-sweatshirt2.jpg">Sweatshirt</div>
+        <div class="sub-tab" data-images="">Sweatpants</div>
+        <div class="sub-tab" data-images="">Shirts</div>
+        <div class="sub-tab" data-images="">Pants</div>
     </div>
-    <div class="gallery-container">
-        <div class="gallery-list" id="baby-sweat-list">
-            <img src="images/baby-sweat1.jpg" alt="baby-sweat1">
-            <img src="images/baby-sweat2.jpg" alt="baby-sweat2">
-        </div>
-        <div class="gallery-display" id="baby-sweat-display"></div>
-    </div>
+</div>
+
+<!-- Gallery Display -->
+<div class="gallery-container" style="margin:20px; display:none;">
+    <div class="gallery-thumbs"></div>
+    <div class="gallery-main"><img src="" alt="Main Image"></div>
 </div>
 
 <script>
 const tabs = document.querySelectorAll('.tab');
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        const targetContent = document.getElementById(tab.dataset.target);
-        tabs.forEach(t => t.classList.remove('active'));
+const tabContents = document.querySelectorAll('.tab-content');
+const galleryContainer = document.querySelector('.gallery-container');
+const galleryThumbs = galleryContainer.querySelector('.gallery-thumbs');
+const galleryMain = galleryContainer.querySelector('.gallery-main img');
+
+// تفعيل التابات الرئيسية
+tabs.forEach(tab=>{
+    tab.addEventListener('click',()=>{
+        const targetId = tab.dataset.target;
+        tabContents.forEach(tc=>tc.style.display=(tc.id===targetId)?'block':'none');
+        tabs.forEach(t=>t.classList.remove('active'));
         tab.classList.add('active');
-        document.querySelectorAll('.tab-content').forEach(tc => {
-            tc.style.display = tc.id === targetContent.id ? 'block' : 'none';
-        });
-        // اخفاء كل الجاليريز
-        targetContent.querySelectorAll('.gallery-container').forEach(g => g.style.display = 'none');
+
+        // افتراضياً اختار أول تاب فرعي
+        const firstSub = document.getElementById(targetId).querySelector('.sub-tab');
+        firstSub.click();
     });
 });
 
-// التابات الفرعية
-const subTabs = document.querySelectorAll('.sub-tab');
-subTabs.forEach(st => {
-    st.addEventListener('click', () => {
+// تبديل التاب الفرعي وعرض الصور
+const allSubTabs = document.querySelectorAll('.sub-tab');
+allSubTabs.forEach(st=>{
+    st.addEventListener('click',()=>{
         const parent = st.closest('.tab-content');
-        // ازالة active من كل الفرعية
-        parent.querySelectorAll('.sub-tab').forEach(s => s.classList.remove('active'));
+        parent.querySelectorAll('.sub-tab').forEach(s=>s.classList.remove('active'));
         st.classList.add('active');
-        // اظهار الجاليرى المناسب
-        parent.querySelectorAll('.gallery-container').forEach(g => g.style.display = 'none');
-        const gallery = parent.querySelector('.gallery-container');
-        gallery.style.display = 'flex';
-        // عرض الصورة الكبرى
-        const display = gallery.querySelector('.gallery-display');
-        const list = gallery.querySelectorAll('img');
-        if(list.length>0){
-            display.innerHTML = `<img src="${list[0].src}" alt="">`;
+
+        const images = st.dataset.images.split(',').filter(i=>i);
+        galleryThumbs.innerHTML='';
+        if(images.length>0){
+            galleryContainer.style.display='flex';
+            galleryMain.src=images[0];
+            images.forEach((img,i)=>{
+                const thumb = document.createElement('img');
+                thumb.src=img;
+                if(i===0) thumb.classList.add('active');
+                thumb.addEventListener('click',()=>{
+                    galleryMain.src=img;
+                    galleryThumbs.querySelectorAll('img').forEach(t=>t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+                galleryThumbs.appendChild(thumb);
+            });
+        }else{
+            galleryContainer.style.display='none';
         }
-        // عند الضغط على أي صورة صغيرة
-        list.forEach(img => {
-            img.onclick = () => {
-                display.innerHTML = `<img src="${img.src}" alt="">`;
-            };
-        });
     });
 });
+
+// تفعيل أول تاب عند تحميل الصفحة
+tabs[0].click();
 </script>
 
 </body>
