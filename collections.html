@@ -254,7 +254,7 @@ subTabs.forEach(st => {
     });
 });
 
-// أزرار التالي والسابق
+// أزرار next  وprev
 document.getElementById('next').addEventListener('click', () => {
     if(currentImages.length === 0) return;
     currentIndex = (currentIndex + 1) % currentImages.length;
@@ -277,5 +277,6 @@ lightbox.addEventListener('click', (e) => {
 
 </body>
 </html>
+
 
 
