@@ -208,7 +208,7 @@ tabs.forEach(tab => {
         const subTabs = targetContent.querySelector('.sub-tabs');
 
         // toggle sub-tabs
-        const visible = subTabs.style.display === 'grid';
+        const visible = subTabs.style.display === 'flex';
         subTabs.style.display = visible ? 'none' : 'flex';
         tab.querySelector('.arrow').textContent = visible ? '▼' : '▲';
 
@@ -239,6 +239,7 @@ subTabsAll.forEach(st => {
 </body>
 
 </html>
+
 
 
 
