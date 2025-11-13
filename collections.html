@@ -21,13 +21,15 @@
 /* الصندوق الأسود للتابات الرئيسية */
 .tabs-box {
     background-color: rgba(0,0,0,0.5); /* صندوق أسود شفاف */
-    padding: 15px 20px;               
+    padding: 15px 10px;               
     border-radius: 10px;              
     display: flex;
+    flex-wrap: wrap; /* مهم عشان لو الشاشة ضيقة يروح التاب تحت */
     justify-content: center;          
     gap: 15px;                        
-    margin: 20px auto;                
-    max-width: 900px;                 
+    margin: 10px auto; /* أقل مسافة */
+    max-width: 100%; /* بدل 900px */
+    box-sizing: border-box;                
 }
 
 /* التابات الرئيسية */
@@ -57,8 +59,8 @@
 /* tab-content بدون أي صندوق أسود */
 .tab-content {
     display: none;
-    max-width: 900px;
-    margin: 5px auto 20px;  /* قريب جداً من التاب */
+    max-width: 100%; /* بدل 900px */
+    margin: 5px auto 20px;
     padding: 0;             /* بدون أي padding */
     background: none;       /* بدون أي خلفية */
 }
@@ -115,8 +117,12 @@
     transform: scale(1.05);
 }
         
-/* Media Queries للموبايل */
 @media (max-width: 768px) {
+    .tab {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
     .sub-tab {
         padding: 3px 8px;
         font-size: 12px;
@@ -193,7 +199,7 @@ tabs.forEach(tab => {
         const subTabs = targetContent.querySelector('.sub-tabs');
 
         // toggle sub-tabs
-        const visible = subTabs.style.display === 'flex';
+        const visible = subTabs.style.display === 'GIRD';
         subTabs.style.display = visible ? 'none' : 'flex';
         tab.querySelector('.arrow').textContent = visible ? '▼' : '▲';
 
@@ -224,3 +230,4 @@ subTabsAll.forEach(st => {
 </body>
 
 </html>
+
