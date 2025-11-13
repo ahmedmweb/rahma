@@ -14,8 +14,6 @@ body {
     background-repeat: no-repeat;
     color: #fff;
 }
-
-/* التابات الرئيسية */
 .tabs-box {
     background-color: rgba(0,0,0,0.6);
     padding: 15px 10px;
@@ -25,59 +23,43 @@ body {
     justify-content: center;
     gap: 15px;
     margin: 10px auto;
-    max-width: 100%;
 }
-
 .tab {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 8px;
-    background-color: rgba(255, 215, 0, 0.2); 
-    color: #FFF; 
+    background-color: rgba(255, 215, 0, 0.2);
+    color: #FFF;
     font-weight: bold;
     display: flex;
     align-items: center;
 }
-
 .tab.active { background-color: rgba(255, 215, 0, 0.4); color: #fff; }
 .arrow { margin-left: 5px; cursor: pointer; }
-
-.tab-content { display: none; max-width: 100%; margin: 5px auto 20px; padding:0; background:none; }
-
-/* التابات الفرعية */
+.tab-content { display: none; max-width: 100%; margin: 10px auto; padding: 0; background: none; }
 .sub-tabs { display: flex; flex-direction: column; gap: 5px; margin: 0; }
-.sub-tab {
-    padding: 4px 10px;
-    font-size: 14px;
-    border-radius: 4px;
-    background-color: rgba(0,0,0,0.5);
-    color: #fff;
-    display: inline-block;
-    cursor: pointer;
-    transition: background 0.6s;
-}
+.sub-tab { padding: 4px 10px; font-size: 14px; border-radius: 4px; background-color: rgba(0,0,0,0.5); color: #fff; cursor: pointer; transition: background 0.6s; display: inline-block; }
 .sub-tab.active { background-color: rgba(255,215,0,0.6); color: #000; }
 
-/* جاليري الصور */
-.gallery-container { display: flex; margin-top: 10px; gap: 20px; }
+/* Gallery */
+.gallery-container { display: flex; gap: 15px; margin-top: 10px; }
 .gallery-sidebar { display: flex; flex-direction: column; gap: 10px; width: 150px; }
-.gallery-sidebar img { width: 100%; cursor: pointer; border-radius:5px; }
+.gallery-sidebar img { width: 100%; cursor: pointer; border-radius: 5px; transition: transform 0.3s; }
+.gallery-sidebar img:hover { transform: scale(1.05); }
 .gallery-main { flex: 1; display: flex; justify-content: center; align-items: center; }
-.gallery-main img { max-width: 100%; max-height: 500px; border-radius:10px; }
+.gallery-main img { max-width: 100%; max-height: 400px; border-radius: 8px; }
 
-/* responsive */
-@media (max-width: 768px) {
+@media (max-width:768px){
     .tab { padding: 8px 12px; font-size: 14px; }
     .sub-tab { padding: 3px 8px; font-size: 12px; }
     .gallery-container { flex-direction: column; }
-    .gallery-sidebar { flex-direction: row; width: 100%; overflow-x: auto; }
-    .gallery-sidebar img { width: auto; height: 80px; }
+    .gallery-sidebar { width: 100%; flex-direction: row; overflow-x: auto; }
+    .gallery-sidebar img { width: 80px; }
 }
 </style>
 </head>
 <body>
 
-<!-- التابات الرئيسية -->
 <div class="tabs-box">
     <div class="tab" data-target="men">MEN <span class="arrow">▼</span></div>
     <div class="tab" data-target="women">WOMEN <span class="arrow">▼</span></div>
@@ -89,7 +71,7 @@ body {
 <!-- MEN -->
 <div class="tab-content" id="men">
     <div class="sub-tabs">
-        <div class="sub-tab active" data-images="men-sweat1.jpg,men-sweat2.jpg">Sweatshirt</div>
+        <div class="sub-tab" data-images="men-sweat1.jpg,men-sweat2.jpg">Sweatshirt</div>
         <div class="sub-tab" data-images="">Men Pullover</div>
         <div class="sub-tab" data-images="">Jacket</div>
         <div class="sub-tab" data-images="">T-Shirts</div>
@@ -105,7 +87,7 @@ body {
 <!-- WOMEN -->
 <div class="tab-content" id="women">
     <div class="sub-tabs">
-        <div class="sub-tab active" data-images="women-paj1.jpg,women-paj2.jpg">Pajamas</div>
+        <div class="sub-tab" data-images="women-paj1.jpg,women-paj2.jpg">Pajamas</div>
         <div class="sub-tab" data-images="">Basics</div>
         <div class="sub-tab" data-images="">Basics Jacket</div>
         <div class="sub-tab" data-images="">T-Shirts</div>
@@ -121,7 +103,7 @@ body {
 <!-- BOYS -->
 <div class="tab-content" id="boys">
     <div class="sub-tabs">
-        <div class="sub-tab active" data-images="boys-sweat1.jpg,boys-sweat2.jpg">Boy’s SweatShirt</div>
+        <div class="sub-tab" data-images="boys-sweat1.jpg,boys-sweat2.jpg">Boy’s SweatShirt</div>
         <div class="sub-tab" data-images="">Sweatpants</div>
         <div class="sub-tab" data-images="">Shirts</div>
         <div class="sub-tab" data-images="">Pants</div>
@@ -135,7 +117,7 @@ body {
 <!-- GIRLS -->
 <div class="tab-content" id="girls">
     <div class="sub-tabs">
-        <div class="sub-tab active" data-images="girls-sweat1.jpg,girls-sweat2.jpg">Girl’s SweatShirt</div>
+        <div class="sub-tab" data-images="girls-sweat1.jpg,girls-sweat2.jpg">Girl’s SweatShirt</div>
         <div class="sub-tab" data-images="">Girl’s Shirt</div>
         <div class="sub-tab" data-images="">Sweatpants</div>
         <div class="sub-tab" data-images="">Pants</div>
@@ -150,7 +132,7 @@ body {
 <!-- BABY -->
 <div class="tab-content" id="baby">
     <div class="sub-tabs">
-        <div class="sub-tab active" data-images="baby-sweat1.jpg,baby-sweat2.jpg">BABY SweatShirt</div>
+        <div class="sub-tab" data-images="baby-sweat1.jpg,baby-sweat2.jpg">BABY SweatShirt</div>
         <div class="sub-tab" data-images="">Sweatpants</div>
         <div class="sub-tab" data-images="">Shirts</div>
         <div class="sub-tab" data-images="">Pants</div>
@@ -162,56 +144,52 @@ body {
 </div>
 
 <script>
-// تابات رئيسية
 const tabs = document.querySelectorAll('.tab');
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-        const targetContent = document.getElementById(tab.dataset.target);
+        const target = document.getElementById(tab.dataset.target);
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
+        document.querySelectorAll('.tab-content').forEach(tc => tc.style.display='none');
+        target.style.display='block';
+
+        // Clear images for all tab contents
         document.querySelectorAll('.tab-content').forEach(tc => {
-            tc.style.display = tc.id === targetContent.id ? 'block' : 'none';
+            tc.querySelectorAll('.gallery-sidebar, .gallery-main img').forEach(el => {
+                el.innerHTML = '';
+                if(el.tagName==='IMG'){ el.src=''; }
+            });
         });
     });
 });
 
-// تابات فرعية
-const allTabContents = document.querySelectorAll('.tab-content');
-allTabContents.forEach(content => {
+// Sub-tabs functionality
+document.querySelectorAll('.tab-content').forEach(content => {
     const subTabs = content.querySelectorAll('.sub-tab');
     const sidebar = content.querySelector('.gallery-sidebar');
     const mainImg = content.querySelector('.gallery-main img');
 
-    function showImages(images) {
-        sidebar.innerHTML = '';
-        if (!images) { mainImg.src=''; return; }
-        images.forEach(img => {
-            const imgele = document.createElement('img');
-            imgele.src = 'images/' + img;
-            imgele.addEventListener('click', () => { mainImg.src = imgele.src; });
-            sidebar.appendChild(imgele);
-        });
-        mainImg.src = 'images/' + images[0];
-    }
-
-    subTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
+    subTabs.forEach(sub => {
+        sub.addEventListener('click', () => {
             subTabs.forEach(s => s.classList.remove('active'));
-            tab.classList.add('active');
-            const images = tab.dataset.images ? tab.dataset.images.split(',') : [];
-            showImages(images);
+            sub.classList.add('active');
+
+            // Clear previous images
+            sidebar.innerHTML='';
+            mainImg.src='';
+
+            const images = sub.dataset.images.split(',').filter(i=>i);
+            images.forEach(imgName=>{
+                const imgEl = document.createElement('img');
+                imgEl.src='images/'+imgName;
+                imgEl.addEventListener('click',()=>{ mainImg.src=imgEl.src; });
+                sidebar.appendChild(imgEl);
+            });
+
+            if(images.length>0){ mainImg.src='images/'+images[0]; }
         });
-        // افتح أول تاب فرعي تلقائي
-        if (tab.classList.contains('active')) {
-            const images = tab.dataset.images ? tab.dataset.images.split(',') : [];
-            showImages(images);
-        }
     });
 });
-
-// تفعيل أول تاب رئيسي تلقائي
-if (tabs.length>0) tabs[0].click();
 </script>
-
 </body>
 </html>
