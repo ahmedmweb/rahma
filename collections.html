@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahma Collections</title>
+    <style>
+        /* الخلفية العامة */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.postimg.cc/Hxv1xGhF/tsmym-bdwn-ʿnwan-1.png');
+            background-size: cover;
+            background-position: center 0%;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+
+
+
+/* الصندوق الأسود للتابات الرئيسية */
+.tabs-box {
+    background-color: rgba(0,0,0,0.5); /* صندوق أسود شفاف */
+    padding: 15px 20px;               
+    border-radius: 10px;              
+    display: flex;
+    justify-content: center;          
+    gap: 15px;                        
+    margin: 20px auto;                
+    max-width: 900px;                 
+}
+
+/* التابات الرئيسية */
+.tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: rgba(255, 215, 0, 0.2); 
+    color: #FFF; 
+    font-weight: bold;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.tab.active {
+    background-color: rgba(255, 215, 0, 0.6); 
+    color: #000;
+}
+
+/* السهم */
+.arrow {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* tab-content بدون أي صندوق أسود */
+.tab-content {
+    display: none;
+    max-width: 900px;
+    margin: 5px auto 20px;  /* قريب جداً من التاب */
+    padding: 0;             /* بدون أي padding */
+    background: none;       /* بدون أي خلفية */
+}
+
+/* التابات الفرعية */
+.sub-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0;  /* يظهر مباشرة تحت التاب */
+}
+
+.sub-tab {
+    padding: 4px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    display: inline-block; 
+    cursor: pointer;
+    transition: background 0.6s;
+}
+
+.sub-tab.active {
+    background-color: rgba(255,215,0,0.6);
+    color: #000;
+
+        }
+
+
+        /* جاليري الصور */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+       .gallery {
+    display: flex;
+    flex-direction: column; /* الصور تحت بعض عمودي */
+    gap: 20px; /* المسافة بين الصور */
+    align-items: center; /* لو تحب الصور تكون في المنتصف */
+
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<!-- رقم 2: الصندوق الأسود الذي يحوي التابات الرئيسية -->
+<div class="tabs-box">
+    <div class="tab" data-target="men">MEN <span class="arrow">▼</span></div>
+    <div class="tab" data-target="women">WOMEN <span class="arrow">▼</span></div>
+    <div class="tab" data-target="boys">BOYS <span class="arrow">▼</span></div>
+    <div class="tab" data-target="girls">GIRLS <span class="arrow">▼</span></div>
+</div>
+
+<!-- MEN -->
+<div class="tab-content" id="men">
+<div class="sub-tabs">
+    <div class="sub-tab active" data-gallery="men-sweatshirt">Sweatshirt</div>
+       <div class="sub-tab" data-gallery="men-pullover">Men Pullover</div>
+        <div class="sub-tab" data-gallery="men-jacket">Jacket</div>
+        <div class="sub-tab" data-gallery="men-tshirts">T-Shirts</div>
+       <div class="sub-tab" data-gallery="men-shirts">Shirts</div>
+        <div class="sub-tab" data-gallery="men-shirts">Shirts</div>
+        <div class="sub-tab" data-gallery="men-pants">Pants</div>
+    </div>
+
+</div>
+
+<!-- WOMEN -->
+<div class="tab-content" id="women">
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="women-pajamas">Pajamas</div>
+        <div class="sub-tab" data-gallery="women-basics">Basics</div>
+        <div class="sub-tab" data-gallery="women-basics-jacket">Basics Jacket</div>
+        <div class="sub-tab" data-gallery="women-tshirts">T-Shirts</div>
+        <div class="sub-tab" data-gallery="women-shirts">Shirts</div>
+        <div class="sub-tab" data-gallery="women-pants">Pants</div>
+    </div>
+
+</div>
+<!-- BOYS -->
+<div class="tab-content" id="boys">
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="boys-sweatshirt">Boy’s SweatShirt</div>
+        <div class="sub-tab" data-gallery="boys-sweatpants">Sweatpants</div>
+        <div class="sub-tab" data-gallery="boys-shirts">Shirts</div>
+        <div class="sub-tab" data-gallery="boys-pants">Pants</div>
+    </div>
+
+  
+</div>
+
+<!-- GIRLS -->
+<div class="tab-content" id="girls">
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="girls-sweatshirt">Girl’s SweatShirt</div>
+        <div class="sub-tab" data-gallery="girls-shirt">Girl’s Shirt</div>
+        <div class="sub-tab" data-gallery="girls-sweatpants">Sweatpants</div>
+        <div class="sub-tab" data-gallery="girls-pants">Pants</div>
+        <div class="sub-tab" data-gallery="girls-pajama">Pajama</div>
+    </div>
+
+</div>
+   <script>
+const tabs = document.querySelectorAll('.tab');
+
+// Accordion لكل التابات الرئيسية
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const targetContent = document.getElementById(tab.dataset.target);
+        const subTabs = targetContent.querySelector('.sub-tabs');
+
+        // toggle sub-tabs
+        const visible = subTabs.style.display === 'flex';
+        subTabs.style.display = visible ? 'none' : 'flex';
+        tab.querySelector('.arrow').textContent = visible ? '▼' : '▲';
+
+        // تفعيل التاب الرئيسي
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // اظهار تاب المحتوى وإخفاء الباقي
+        document.querySelectorAll('.tab-content').forEach(tc => {
+            tc.style.display = tc.id === targetContent.id ? 'block' : 'none';
+        });
+    });
+});
+
+// تبديل التبويبات الفرعية
+const subTabsAll = document.querySelectorAll('.sub-tab');
+subTabsAll.forEach(st => {
+    st.addEventListener('click', () => {
+        const parent = st.closest('.tab-content');
+        parent.querySelectorAll('.sub-tab').forEach(s => s.classList.remove('active'));
+        st.classList.add('active');
+    });
+});
+
+</script>
+
+
+</body>
+</html>
