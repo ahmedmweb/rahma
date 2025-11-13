@@ -1,138 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahma Collections</title>
-    <style>
-        /* الخلفية العامة */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-image: url('https://i.postimg.cc/Hxv1xGhF/tsmym-bdwn-ʿnwan-1.png');
-            background-size: cover;
-            background-position: center 0%;
-            background-repeat: no-repeat;
-            color: #fff;
-        }
-
-
-
-/* الصندوق الأسود للتابات الرئيسية */
-.tabs-box {
-    background-color: rgba(0,0,0,0.6); /* صندوق أسود شفاف */
-    padding: 15px 10px;               
-    border-radius: 10px;              
-    display: flex;
-    flex-wrap: wrap; /* مهم عشان لو الشاشة ضيقة يروح التاب تحت */
-    justify-content: center;          
-    gap: 15px;                        
-    margin: 10px auto; /* أقل مسافة */
-    max-width: 100%; /* بدل 900px */
-    box-sizing: border-box;                
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rahma Collections</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://i.postimg.cc/Hxv1xGhF/tsmym-bdwn-ʿnwan-1.png');
+    background-size: cover;
+    background-position: center 0%;
+    background-repeat: no-repeat;
+    color: #fff;
 }
 
 /* التابات الرئيسية */
+.tabs-box {
+    background-color: rgba(0,0,0,0.6);
+    padding: 15px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px auto;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
 .tab {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 8px;
-    background-color: rgba(255, 215, 0, 0.2); 
-    color: #FFF; 
+    background-color: rgba(255, 215, 0, 0.2);
+    color: #FFF;
     font-weight: bold;
-    transition: background 0.3s;
     display: flex;
     align-items: center;
+    transition: background 0.3s;
 }
 
 .tab.active {
-    background-color: rgba(255, 215, 0, 0.4); 
-    color: #fff;
+    background-color: rgba(255, 215, 0, 0.4);
 }
 
-/* السهم */
-.arrow {
-    margin-left: 5px;
-    cursor: pointer;
-}
+.arrow { margin-left: 5px; }
 
-/* tab-content بدون أي صندوق أسود */
-.tab-content {
-    display: none;
-    max-width: 100%; /* بدل 900px */
-    margin: 5px auto 20px;
-    padding: 0;             /* بدون أي padding */
-    background: none;       /* بدون أي خلفية */
-}
+/* محتوى التابات */
+.tab-content { display: none; max-width: 100%; margin: 5px auto 20px; }
 
 /* التابات الفرعية */
-.sub-tabs {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin: 0;  /* يظهر مباشرة تحت التاب */
-}
-
+.sub-tabs { display: flex; flex-direction: column; gap: 5px; margin: 0; }
 .sub-tab {
     padding: 4px 10px;
     font-size: 14px;
     border-radius: 4px;
     background-color: rgba(0,0,0,0.5);
     color: #fff;
-    display: inline-block; 
+    display: inline-block;
     cursor: pointer;
     transition: background 0.6s;
 }
+.sub-tab.active { background-color: rgba(255,215,0,0.6); color: #000; }
 
-.sub-tab.active {
-    background-color: rgba(255,215,0,0.6);
-    color: #000;
-
-        }
-
-
-        /* جاليري الصور */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
-        }
-
-       .gallery {
-    display: grid;
+/* الجاليري */
+.gallery {
+    display: none; /* مخفي افتراضيًا */
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 15px;
-    justify-items: center; /* الصور في المنتصف داخل كل خلية */
+    justify-items: center;
+    display: grid;
+    margin-top: 10px;
 }
 
 .gallery img {
     width: 100%;
     max-width: 200px;
-    height: auto;
     border-radius: 8px;
     transition: transform 0.3s;
 }
+.gallery img:hover { transform: scale(1.05); }
 
-.gallery img:hover {
-    transform: scale(1.05);
-}
-        
 @media (max-width: 768px) {
-    .tab {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-
-    .sub-tab {
-        padding: 3px 8px;
-        font-size: 12px;
-    }
+    .tab { padding: 8px 12px; font-size: 14px; }
+    .sub-tab { padding: 3px 8px; font-size: 12px; }
 }
-
-    </style>
+</style>
 </head>
 <body>
-<!-- رقم 2: الصندوق الأسود الذي يحوي التابات الرئيسية -->
+
 <div class="tabs-box">
     <div class="tab" data-target="men">MEN <span class="arrow">▼</span></div>
     <div class="tab" data-target="women">WOMEN <span class="arrow">▼</span></div>
@@ -143,103 +100,115 @@
 
 <!-- MEN -->
 <div class="tab-content" id="men">
-<div class="sub-tabs">
-    <div class="sub-tab active" data-gallery="men-sweatshirt">Sweatshirt</div>
-       <div class="sub-tab" data-gallery="men-pullover">Men Pullover</div>
-        <div class="sub-tab" data-gallery="men-jacket">Jacket</div>
-        <div class="sub-tab" data-gallery="men-tshirts">T-Shirts</div>
-        <div class="sub-tab" data-gallery="men-shirts">Shirts</div>
-        <div class="sub-tab" data-gallery="men-pants">Pants</div>
+    <div class="sub-tabs">
+        <div class="sub-tab active" onclick="showGallery('men-sweatshirt')">Sweatshirt</div>
+        <div class="sub-tab" onclick="showGallery('men-pullover')">Men Pullover</div>
+        <div class="sub-tab" onclick="showGallery('men-jacket')">Jacket</div>
+        <div class="sub-tab" onclick="showGallery('men-tshirts')">T-Shirts</div>
+        <div class="sub-tab" onclick="showGallery('men-shirts')">Shirts</div>
+        <div class="sub-tab" onclick="showGallery('men-pants')">Pants</div>
     </div>
-
+    <div class="gallery" id="men-sweatshirt">
+        <img src="images/men1.jpg" alt="">
+        <img src="images/men2.jpg" alt="">
+    </div>
+    <div class="gallery" id="men-pullover">
+        <img src="images/men3.jpg" alt="">
+        <img src="images/men4.jpg" alt="">
+    </div>
+    <div class="gallery" id="men-jacket">
+        <img src="images/men5.jpg" alt="">
+        <img src="images/men6.jpg" alt="">
+    </div>
 </div>
 
 <!-- WOMEN -->
 <div class="tab-content" id="women">
     <div class="sub-tabs">
-        <div class="sub-tab active" data-gallery="women-pajamas">Pajamas</div>
-        <div class="sub-tab" data-gallery="women-basics">Basics</div>
-        <div class="sub-tab" data-gallery="women-basics-jacket">Basics Jacket</div>
-        <div class="sub-tab" data-gallery="women-tshirts">T-Shirts</div>
-        <div class="sub-tab" data-gallery="women-shirts">Shirts</div>
-        <div class="sub-tab" data-gallery="women-pants">Pants</div>
+        <div class="sub-tab active" onclick="showGallery('women-pajamas')">Pajamas</div>
+        <div class="sub-tab" onclick="showGallery('women-basics')">Basics</div>
+        <div class="sub-tab" onclick="showGallery('women-basics-jacket')">Basics Jacket</div>
+        <div class="sub-tab" onclick="showGallery('women-tshirts')">T-Shirts</div>
+        <div class="sub-tab" onclick="showGallery('women-shirts')">Shirts</div>
+        <div class="sub-tab" onclick="showGallery('women-pants')">Pants</div>
     </div>
-
+    <div class="gallery" id="women-pajamas">
+        <img src="images/women1.jpg" alt="">
+        <img src="images/women2.jpg" alt="">
+    </div>
 </div>
+
 <!-- BOYS -->
 <div class="tab-content" id="boys">
     <div class="sub-tabs">
-        <div class="sub-tab active" data-gallery="boys-sweatshirt">Boy’s SweatShirt</div>
-        <div class="sub-tab" data-gallery="boys-sweatpants">Sweatpants</div>
-        <div class="sub-tab" data-gallery="boys-shirts">Shirts</div>
-        <div class="sub-tab" data-gallery="boys-pants">Pants</div>
+        <div class="sub-tab active" onclick="showGallery('boys-sweatshirt')">Boy’s SweatShirt</div>
+        <div class="sub-tab" onclick="showGallery('boys-sweatpants')">Sweatpants</div>
+        <div class="sub-tab" onclick="showGallery('boys-shirts')">Shirts</div>
+        <div class="sub-tab" onclick="showGallery('boys-pants')">Pants</div>
     </div>
-    
-  </div>
-<!-- BABY -->
-<div class="tab-content" id="baby">
-    <div class="sub-tabs">
-        <div class="sub-tab active" data-gallery="baby-sweatshirt">BABY SweatShirt</div>
-        <div class="sub-tab" data-gallery="baby-sweatpants">Sweatpants</div>
-        <div class="sub-tab" data-gallery="baby-shirts">Shirts</div>
-        <div class="sub-tab" data-gallery="baby-pants">Pants</div>
+    <div class="gallery" id="boys-sweatshirt">
+        <img src="images/boys1.jpg" alt="">
+        <img src="images/boys2.jpg" alt="">
     </div>
-  
 </div>
 
 <!-- GIRLS -->
 <div class="tab-content" id="girls">
     <div class="sub-tabs">
-        <div class="sub-tab active" data-gallery="girls-sweatshirt">Girl’s SweatShirt</div>
-        <div class="sub-tab" data-gallery="girls-shirt">Girl’s Shirt</div>
-        <div class="sub-tab" data-gallery="girls-sweatpants">Sweatpants</div>
-        <div class="sub-tab" data-gallery="girls-pants">Pants</div>
-        <div class="sub-tab" data-gallery="girls-pajama">Pajama</div>
+        <div class="sub-tab active" onclick="showGallery('girls-sweatshirt')">Girl’s SweatShirt</div>
+        <div class="sub-tab" onclick="showGallery('girls-shirt')">Girl’s Shirt</div>
+        <div class="sub-tab" onclick="showGallery('girls-sweatpants')">Sweatpants</div>
+        <div class="sub-tab" onclick="showGallery('girls-pants')">Pants</div>
+        <div class="sub-tab" onclick="showGallery('girls-pajama')">Pajama</div>
     </div>
-    
+    <div class="gallery" id="girls-sweatshirt">
+        <img src="images/girls1.jpg" alt="">
+        <img src="images/girls2.jpg" alt="">
     </div>
-   <script>
-const tabs = document.querySelectorAll('.tab');
+</div>
 
-// Accordion لكل التابات الرئيسية
+<!-- BABY -->
+<div class="tab-content" id="baby">
+    <div class="sub-tabs">
+        <div class="sub-tab active" onclick="showGallery('baby-sweatshirt')">BABY SweatShirt</div>
+        <div class="sub-tab" onclick="showGallery('baby-sweatpants')">Sweatpants</div>
+        <div class="sub-tab" onclick="showGallery('baby-shirts')">Shirts</div>
+        <div class="sub-tab" onclick="showGallery('baby-pants')">Pants</div>
+    </div>
+    <div class="gallery" id="baby-sweatshirt">
+        <img src="images/baby1.jpg" alt="">
+        <img src="images/baby2.jpg" alt="">
+    </div>
+</div>
+
+<script>
+// التحكم في التابات الرئيسية
+const tabs = document.querySelectorAll('.tab');
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         const targetContent = document.getElementById(tab.dataset.target);
-        const subTabs = targetContent.querySelector('.sub-tabs');
-
-        // toggle sub-tabs
-        const visible = subTabs.style.display === 'flex';
-        subTabs.style.display = visible ? 'none' : 'flex';
-        tab.querySelector('.arrow').textContent = visible ? '▼' : '▲';
-
-        // تفعيل التاب الرئيسي
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
-
-        // اظهار تاب المحتوى وإخفاء الباقي
         document.querySelectorAll('.tab-content').forEach(tc => {
             tc.style.display = tc.id === targetContent.id ? 'block' : 'none';
         });
+        // اخفاء جميع الجاليريات عند تبديل التاب الرئيسي
+        document.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
     });
 });
 
-// تبديل التبويبات الفرعية
-const subTabsAll = document.querySelectorAll('.sub-tab');
-subTabsAll.forEach(st => {
-    st.addEventListener('click', () => {
-        const parent = st.closest('.tab-content');
-        parent.querySelectorAll('.sub-tab').forEach(s => s.classList.remove('active'));
-        st.classList.add('active');
-    });
-});
-
+// التحكم في التابات الفرعية والجاليري
+function showGallery(galleryId){
+    // اخفاء كل الجاليريات
+    document.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
+    // اظهار الجاليري المطلوب
+    const gallery = document.getElementById(galleryId);
+    if(gallery) gallery.style.display = 'grid';
+    // تفعيل التاب الفرعي
+    document.querySelectorAll('.sub-tab').forEach(st => st.classList.remove('active'));
+    document.querySelector(`[onclick="showGallery('${galleryId}')"]`).classList.add('active');
+}
 </script>
 
-
 </body>
-
 </html>
-
-
-
-
