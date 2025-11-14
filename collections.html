@@ -42,36 +42,53 @@
         color: #fff;
         text-decoration: none;
     }
-         /* المثلثات تحت HOME */
-    .triangles-container {
-        position: absolute;
-        top: 80px; /* تحت HOME مباشرة */
-        left: 15px;
-        display: flex;
-        flex-direction: ROW;
-        gap: 0px;
-    }
+        <!-- المثلثات الجانبية -->
+<div class="triangles-container">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
 
-    .triangles-container span {
-        width: 15px;
-        height: 20px;
-        background-color: #fff;
-        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        cursor: pointer;
-    }
+<!-- القائمة الجانبية -->
+<div class="side-menu">
+    <!-- هنا تحط أي عناصر تحب تظهر -->
+</div>
 
-    /* القائمة الجانبية */
-    .side-menu {
-        position: absolute;
-        top: 70px; /* تحت المثلثات */
-        left: 10px;
-        width: 150px;
-        height: calc(100vh - 70px);
-        background-color: rgba(255,255,255,0.1); 
-        display: none;
-        flex-direction: column;
-        padding: 10px;
-        border-radius: 6px;
+<style>
+/* المثلثات الجانبية */
+.triangles-container {
+    position: fixed; /* ثابت على جنب الصفحة */
+    top: 100px; /* مسافة من أعلى الصفحة */
+    left: 10px;
+    display: flex;
+    flex-direction: row; /* جنب بعض */
+    gap: 5px;
+    z-index: 1000;
+}
+
+.triangles-container span {
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    cursor: pointer;
+}
+
+/* القائمة الجانبية */
+.side-menu {
+    position: fixed; /* ثابت على جنب الصفحة */
+    top: 130px; /* تحت المثلثات */
+    left: 10px;
+    width: 150px;
+    height: calc(100vh - 130px);
+    background-color: rgba(255,255,255,0.1);
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 6px;
+    z-index: 999;
+}
+</style>
     }
        
     /* التابات الرئيسية */
@@ -280,10 +297,10 @@ subTabsAll.forEach(st => {
         st.classList.add('active');
     });
 });
+<script>
 const trianglesContainer = document.querySelector('.triangles-container');
 const sideMenu = document.querySelector('.side-menu');
 
-// التحكم في ظهور القائمة الجانبية
 function showMenu() {
     sideMenu.style.display = 'flex';
 }
@@ -297,14 +314,13 @@ trianglesContainer.addEventListener('mouseenter', showMenu);
 trianglesContainer.addEventListener('mouseleave', hideMenu);
 sideMenu.addEventListener('mouseenter', showMenu);
 sideMenu.addEventListener('mouseleave', hideMenu);
-
-
 </script>
 
 
 </body>
 
 </html>
+
 
 
 
