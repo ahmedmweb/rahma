@@ -42,37 +42,6 @@
         color: #fff;
         text-decoration: none;
     }
-        <!-- المثلثات الجانبية -->
-<div class="triangles-container">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
-
-<!-- القائمة الجانبية -->
-<div class="side-menu">
-    <!-- هنا تحط أي عناصر تحب تظهر -->
-</div>
-
-<style>
-/* المثلثات الجانبية */
-.triangles-container {
-    position: fixed; /* ثابت على جنب الصفحة */
-    top: 100px; /* مسافة من أعلى الصفحة */
-    left: 10px;
-    display: flex;
-    flex-direction: row; /* جنب بعض */
-    gap: 5px;
-    z-index: 1000;
-}
-
-.triangles-container span {
-    width: 15px;
-    height: 15px;
-    background-color: #fff;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    cursor: pointer;
-}   
        
     /* التابات الرئيسية */
     .tab {
@@ -280,29 +249,9 @@ subTabsAll.forEach(st => {
         st.classList.add('active');
     });
 });
-<script>
-const trianglesContainer = document.querySelector('.triangles-container');
-const sideMenu = document.querySelector('.side-menu');
-
-function showMenu() {
-    sideMenu.style.display = 'flex';
-}
-function hideMenu(e) {
-    if (!trianglesContainer.contains(e.relatedTarget) && !sideMenu.contains(e.relatedTarget)) {
-        sideMenu.style.display = 'none';
-    }
-}
-
-trianglesContainer.addEventListener('mouseenter', showMenu);
-trianglesContainer.addEventListener('mouseleave', hideMenu);
-sideMenu.addEventListener('mouseenter', showMenu);
-sideMenu.addEventListener('mouseleave', hideMenu);
-</script>
-
-
 </body>
-
 </html>
+
 
 
 
