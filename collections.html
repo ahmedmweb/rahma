@@ -16,135 +16,140 @@
             color: #fff;
         }
 
-
-
-/* الصندوق الأسود للتابات الرئيسية */
-    .tabs-box {
-        background-color: rgba(0,0,0,0.6);
-        padding: 15px 10px;               
-        border-radius: 10px;              
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 15px;                        
-        margin: 10px auto;
-        max-width: 100%;
-        position: relative;
-        box-sizing: border-box;
-    }
-
-     /* كلمة HOME */
-    .home-link {
-        position: absolute;
-        left: 10px;
-        font-size: 22px;
-        font-weight: bold;
-        color: #fff;
-        text-decoration: none;
-    }
-       
-    /* التابات الرئيسية */
-    .tab {
-        padding: 10px 20px;
-        cursor: pointer;
-        border-radius: 8px;
-        background-color: rgba(255, 215, 0, 0.2); 
-        color: #FFF; 
-        font-weight: bold;
-        transition: background 0.3s;
-        display: flex;
-        align-items: center;
-    }
-
-    .tab.active {
-        background-color: rgba(255, 215, 0, 0.4); 
-        color: #fff;
-    }
-
-    /* السهم */
-    .arrow {
-        margin-left: 5px;
-        cursor: pointer;
-    }
-/* السهم */
-.arrow {
-    margin-left: 5px;
-    cursor: pointer;
-}
-
-/* tab-content بدون أي صندوق أسود */
-.tab-content {
-    display: none;
-    max-width: 100%; /* بدل 900px */
-    margin: 5px auto 20px;
-    padding: 0;             /* بدون أي padding */
-    background: none;       /* بدون أي خلفية */
-}
-
-/* التابات الفرعية */
-.sub-tabs {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin: 0;  /* يظهر مباشرة تحت التاب */
-}
-
-.sub-tab {
-    padding: 4px 10px;
-    font-size: 14px;
-    border-radius: 4px;
-    background-color: rgba(0,0,0,0.5);
-    color: #fff;
-    display: inline-block; 
-    cursor: pointer;
-    transition: background 0.6s;
-}
-
-.sub-tab.active {
-    background-color: rgba(255,215,0,0.6);
-    color: #000;
-
+        /* الصندوق الأسود للتابات الرئيسية */
+        .tabs-box {
+            background-color: rgba(0,0,0,0.6);
+            padding: 15px 10px;               
+            border-radius: 10px;              
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;          
+            gap: 15px;                        
+            margin: 10px auto;
+           max-width: 100%; /* بدل 900px */
+            box-sizing: border-box;                
         }
 
+/* كلمة HOME */ 
+.home-link {
+ position: absolute;
+ left: 10px;
+ font-size: 22px; 
+font-weight: bold;
+ color: #fff;
+ text-decoration: none; 
+}
+
+ .home-triangles {
+ position: absolute;
+ top: 40px; /* تحت HOME مباشرة */
+ left: 10px; 
+display: flex; 
+flex-direction: column; 
+gap: 4px; 
+opacity: 0; /* مخفية افتراضياً */ 
+transition: opacity 0.3s;
+ }
+
+ .home-triangles span { 
+width: 10px;
+ height: 10px; 
+background-color: #fff;
+ clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* مثلث صغير */
+ } 
+
+/* تظهر عند hover على HOME */
+ .home-link:hover + .home-triangles { opacity: 1; }
+
+        /* التابات الرئيسية */
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: rgba(255, 215, 0, 0.2); 
+            color: #FFF; 
+            font-weight: bold;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .tab.active {
+            background-color: rgba(255, 215, 0, 0.4); 
+            color: #fff;
+        }
+
+        /* السهم */
+        .arrow {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        /* tab-content بدون أي صندوق أسود */
+        .tab-content {
+            display: none;
+            max-width: 100%;
+            margin: 5px auto 20px;
+            padding: 0;
+            background: none;
+        }
+
+        /* التابات الفرعية */
+        .sub-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin: 0;
+        }
+
+        .sub-tab {
+            padding: 4px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            background-color: rgba(0,0,0,0.5);
+            color: #fff;
+            display: inline-block; 
+            cursor: pointer;
+            transition: background 0.6s;
+        }
+
+        .sub-tab.active {
+            background-color: rgba(255,215,0,0.6);
+            color: #000;
+        }
 
         /* جاليري الصور */
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 15px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
         }
 
-       .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 15px;
-    justify-items: center; /* الصور في المنتصف داخل كل خلية */
-}
+        .gallery img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
 
-.gallery img {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    border-radius: 8px;
-    transition: transform 0.3s;
-}
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
 
-.gallery img:hover {
-    transform: scale(1.05);
-}
-        
-@media (max-width: 768px) {
-    .tab {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
+        @media (max-width: 768px) {
+            .tab {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
 
-    .sub-tab {
-        padding: 3px 8px;
-        font-size: 12px;
-    }
-}
-
+            .sub-tab {
+                padding: 3px 8px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -160,15 +165,18 @@
 
 <!-- MEN -->
 <div class="tab-content" id="men">
-<div class="sub-tabs">
-    <div class="sub-tab active" data-gallery="men-sweatshirt">Sweatshirt</div>
-       <div class="sub-tab" data-gallery="men-pullover">Men Pullover</div>
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="men-sweatshirt">Sweatshirt</div>
+        <div class="sub-tab" data-gallery="men-pullover">Men Pullover</div>
         <div class="sub-tab" data-gallery="men-jacket">Jacket</div>
         <div class="sub-tab" data-gallery="men-tshirts">T-Shirts</div>
         <div class="sub-tab" data-gallery="men-shirts">Shirts</div>
         <div class="sub-tab" data-gallery="men-pants">Pants</div>
     </div>
-
+    <div class="gallery" id="men-sweatshirt-gallery">
+        <img src="images/men-sweat1.jpg" alt="">
+        <img src="images/men-sweat2.jpg" alt="">
+    </div>
 </div>
 
 <!-- WOMEN -->
@@ -181,8 +189,12 @@
         <div class="sub-tab" data-gallery="women-shirts">Shirts</div>
         <div class="sub-tab" data-gallery="women-pants">Pants</div>
     </div>
-
+    <div class="gallery" id="women-pajamas-gallery">
+        <img src="images/women-paj1.jpg" alt="">
+        <img src="images/women-paj2.jpg" alt="">
+    </div>
 </div>
+
 <!-- BOYS -->
 <div class="tab-content" id="boys">
     <div class="sub-tabs">
@@ -191,8 +203,12 @@
         <div class="sub-tab" data-gallery="boys-shirts">Shirts</div>
         <div class="sub-tab" data-gallery="boys-pants">Pants</div>
     </div>
-    
-  </div>
+    <div class="gallery" id="boys-sweatshirt-gallery">
+        <img src="images/boys-sweat1.jpg" alt="">
+        <img src="images/boys-sweat2.jpg" alt="">
+    </div>
+</div>
+
 <!-- BABY -->
 <div class="tab-content" id="baby">
     <div class="sub-tabs">
@@ -201,7 +217,10 @@
         <div class="sub-tab" data-gallery="baby-shirts">Shirts</div>
         <div class="sub-tab" data-gallery="baby-pants">Pants</div>
     </div>
-  
+    <div class="gallery" id="baby-sweatshirt-gallery">
+        <img src="images/baby-sweat1.jpg" alt="">
+        <img src="images/baby-sweat2.jpg" alt="">
+    </div>
 </div>
 
 <!-- GIRLS -->
@@ -213,59 +232,52 @@
         <div class="sub-tab" data-gallery="girls-pants">Pants</div>
         <div class="sub-tab" data-gallery="girls-pajama">Pajama</div>
     </div>
-    
+    <div class="gallery" id="girls-sweatshirt-gallery">
+        <img src="images/girls-sweat1.jpg" alt="">
+        <img src="images/girls-sweat2.jpg" alt="">
     </div>
-   <script>
-const tabs = document.querySelectorAll('.tab');
+</div>
 
-// Accordion لكل التابات الرئيسية
+<script>
+const tabs = document.querySelectorAll('.tab');
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         const targetContent = document.getElementById(tab.dataset.target);
         const subTabs = targetContent.querySelector('.sub-tabs');
-
-        // toggle sub-tabs
         const visible = subTabs.style.display === 'flex';
         subTabs.style.display = visible ? 'none' : 'flex';
         tab.querySelector('.arrow').textContent = visible ? '▼' : '▲';
-
-        // تفعيل التاب الرئيسي
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
-
-        // اظهار تاب المحتوى وإخفاء الباقي
         document.querySelectorAll('.tab-content').forEach(tc => {
             tc.style.display = tc.id === targetContent.id ? 'block' : 'none';
         });
     });
 });
 
-// تبديل التبويبات الفرعية
+// تبديل التبويبات الفرعية وعرض الجاليري
 const subTabsAll = document.querySelectorAll('.sub-tab');
 subTabsAll.forEach(st => {
     st.addEventListener('click', () => {
         const parent = st.closest('.tab-content');
         parent.querySelectorAll('.sub-tab').forEach(s => s.classList.remove('active'));
         st.classList.add('active');
+        parent.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
+        const galleryId = st.dataset.gallery + '-gallery';
+        const gallery = document.getElementById(galleryId);
+        if (gallery) gallery.style.display = 'flex';
     });
 });
+
+// اظهار الجاليري للتاب الفرعي النشط عند تحميل الصفحة
+document.querySelectorAll('.tab-content').forEach(tc => {
+    const activeSub = tc.querySelector('.sub-tab.active');
+    if (activeSub) {
+        const gallery = document.getElementById(activeSub.dataset.gallery + '-gallery');
+        if (gallery) gallery.style.display = 'flex';
+    }
+});
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
