@@ -73,6 +73,16 @@
         padding: 10px;
         border-radius: 6px;
     }
+        <div class="triangles-container">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="side-menu">
+    <!-- هنا أي عناصر هتظهر في القائمة الجانبية -->
+</div>
+
 
     /* التابات الرئيسية */
     .tab {
@@ -280,7 +290,10 @@ subTabsAll.forEach(st => {
         st.classList.add('active');
     });
 });
-       // التحكم في ظهور القائمة الجانبية
+const trianglesContainer = document.querySelector('.triangles-container');
+const sideMenu = document.querySelector('.side-menu');
+
+// التحكم في ظهور القائمة الجانبية
 function showMenu() {
     sideMenu.style.display = 'flex';
 }
@@ -295,12 +308,14 @@ trianglesContainer.addEventListener('mouseleave', hideMenu);
 sideMenu.addEventListener('mouseenter', showMenu);
 sideMenu.addEventListener('mouseleave', hideMenu);
 
+
 </script>
 
 
 </body>
 
 </html>
+
 
 
 
