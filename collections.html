@@ -19,37 +19,53 @@
 
 
 /* الصندوق الأسود للتابات الرئيسية */
-.tabs-box {
-    background-color: rgba(0,0,0,0.6); /* صندوق أسود شفاف */
-    padding: 15px 10px;               
-    border-radius: 10px;              
-    display: flex;
-    flex-wrap: wrap; /* مهم عشان لو الشاشة ضيقة يروح التاب تحت */
-    justify-content: center;          
-    gap: 15px;                        
-    margin: 10px auto; /* أقل مسافة */
-    max-width: 900px;
-    box-sizing: border-box;                
-}
+    .tabs-box {
+        background-color: rgba(0,0,0,0.6);
+        padding: 15px 10px;               
+        border-radius: 10px;              
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;                        
+        margin: 10px auto;
+        max-width: 100%;
+        position: relative;
+        box-sizing: border-box;
+    }
 
-/* التابات الرئيسية */
-.tab {
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 8px;
-    background-color: rgba(255, 215, 0, 0.2); 
-    color: #FFF; 
-    font-weight: bold;
-    transition: background 0.3s;
-    display: flex;
-    align-items: center;
-}
+    /* كلمة HOME */
+    .home-link {
+        position: absolute;
+        left: 10px;
+        font-size: 22px;
+        font-weight: bold;
+        color: #fff;
+        text-decoration: none;
+    }
 
-.tab.active {
-    background-color: rgba(255, 215, 0, 0.4); 
-    color: #fff;
-}
+    /* التابات الرئيسية */
+    .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 8px;
+        background-color: rgba(255, 215, 0, 0.2); 
+        color: #FFF; 
+        font-weight: bold;
+        transition: background 0.3s;
+        display: flex;
+        align-items: center;
+    }
 
+    .tab.active {
+        background-color: rgba(255, 215, 0, 0.4); 
+        color: #fff;
+    }
+
+    /* السهم */
+    .arrow {
+        margin-left: 5px;
+        cursor: pointer;
+    }
 /* السهم */
 .arrow {
     margin-left: 5px;
@@ -239,6 +255,7 @@ subTabsAll.forEach(st => {
 </body>
 
 </html>
+
 
 
 
