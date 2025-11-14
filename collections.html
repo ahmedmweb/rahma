@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rahma Collections</title>
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-image: url('https://i.postimg.cc/Hxv1xGhF/tsmym-bdwn-ʿnwan-1.png');
-    background-size: cover;
-    background-position: center 0%;
-    background-repeat: no-repeat;
-    color: #fff;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahma Collections</title>
+    <style>
+        /* الخلفية العامة */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.postimg.cc/Hxv1xGhF/tsmym-bdwn-ʿnwan-1.png');
+            background-size: cover;
+            background-position: center 0%;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+
+
+
+/* الصندوق الأسود للتابات الرئيسية */
+.tabs-box {
+    background-color: rgba(0,0,0,0.6); /* صندوق أسود شفاف */
+    padding: 15px 10px;               
+    border-radius: 10px;              
+    display: flex;
+    flex-wrap: wrap; /* مهم عشان لو الشاشة ضيقة يروح التاب تحت */
+    justify-content: center;          
+    gap: 15px;                        
+    margin: 10px auto; /* أقل مسافة */
+    max-width: 100%; /* بدل 900px */
+    box-sizing: border-box;                
 }
 
 /* التابات الرئيسية */
-.tabs-box {
-    background-color: rgba(0,0,0,0.6);
-    padding: 15px 10px;
-    border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin: 10px auto;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
 .tab {
     padding: 10px 20px;
     cursor: pointer;
@@ -46,25 +50,27 @@ body {
     color: #fff;
 }
 
+/* السهم */
 .arrow {
     margin-left: 5px;
     cursor: pointer;
 }
 
-/* المحتوى الفرعي */
+/* tab-content بدون أي صندوق أسود */
 .tab-content {
     display: none;
-    max-width: 100%;
+    max-width: 100%; /* بدل 900px */
     margin: 5px auto 20px;
-    padding: 0;
-    background: none;
+    padding: 0;             /* بدون أي padding */
+    background: none;       /* بدون أي خلفية */
 }
 
+/* التابات الفرعية */
 .sub-tabs {
     display: flex;
     flex-direction: column;
     gap: 5px;
-    margin: 0;
+    margin: 0;  /* يظهر مباشرة تحت التاب */
 }
 
 .sub-tab {
@@ -81,68 +87,52 @@ body {
 .sub-tab.active {
     background-color: rgba(255,215,0,0.6);
     color: #000;
+
+        }
+
+
+        /* جاليري الصور */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+       .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    justify-items: center; /* الصور في المنتصف داخل كل خلية */
 }
 
-/* Lightbox */
-#lightbox {
-    display: none;
-    position: fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background: rgba(0,0,0,0.8);
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 1000;
-}
-
-#lightbox img {
-    max-width: 80%;
-    max-height: 70%;
+.gallery img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
     border-radius: 8px;
+    transition: transform 0.3s;
 }
 
-#lightbox .controls {
-    margin-top: 10px;
-    display: flex;
-    gap: 20px;
+.gallery img:hover {
+    transform: scale(1.05);
 }
-
-#lightbox button {
-    padding: 8px 16px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: rgba(255,215,0,0.6);
-    color: #000;
-    font-weight: bold;
-}
-
-#lightbox .close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #fff;
-}
-
+        
 @media (max-width: 768px) {
     .tab {
         padding: 8px 12px;
         font-size: 14px;
     }
+
     .sub-tab {
         padding: 3px 8px;
         font-size: 12px;
     }
 }
-</style>
+
+    </style>
 </head>
 <body>
-
+<!-- رقم 2: الصندوق الأسود الذي يحوي التابات الرئيسية -->
 <div class="tabs-box">
     <div class="tab" data-target="men">MEN <span class="arrow">▼</span></div>
     <div class="tab" data-target="women">WOMEN <span class="arrow">▼</span></div>
@@ -153,127 +143,103 @@ body {
 
 <!-- MEN -->
 <div class="tab-content" id="men">
-  <div class="sub-tabs">
-    <div class="sub-tab" data-images='["images/men-sweat1.jpg","images/men-sweat2.jpg"]'>Sweatshirt</div>
-    <div class="sub-tab" data-images='[]'>Men Pullover</div>
-    <div class="sub-tab" data-images='[]'>Jacket</div>
-    <div class="sub-tab" data-images='[]'>T-Shirts</div>
-    <div class="sub-tab" data-images='[]'>Shirts</div>
-    <div class="sub-tab" data-images='[]'>Pants</div>
-  </div>
+<div class="sub-tabs">
+    <div class="sub-tab active" data-gallery="men-sweatshirt">Sweatshirt</div>
+       <div class="sub-tab" data-gallery="men-pullover">Men Pullover</div>
+        <div class="sub-tab" data-gallery="men-jacket">Jacket</div>
+        <div class="sub-tab" data-gallery="men-tshirts">T-Shirts</div>
+        <div class="sub-tab" data-gallery="men-shirts">Shirts</div>
+        <div class="sub-tab" data-gallery="men-pants">Pants</div>
+    </div>
+
 </div>
 
 <!-- WOMEN -->
 <div class="tab-content" id="women">
-  <div class="sub-tabs">
-    <div class="sub-tab" data-images='["images/women-paj1.jpg","images/women-paj2.jpg"]'>Pajamas</div>
-    <div class="sub-tab" data-images='[]'>Basics</div>
-    <div class="sub-tab" data-images='[]'>Basics Jacket</div>
-    <div class="sub-tab" data-images='[]'>T-Shirts</div>
-    <div class="sub-tab" data-images='[]'>Shirts</div>
-    <div class="sub-tab" data-images='[]'>Pants</div>
-  </div>
-</div>
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="women-pajamas">Pajamas</div>
+        <div class="sub-tab" data-gallery="women-basics">Basics</div>
+        <div class="sub-tab" data-gallery="women-basics-jacket">Basics Jacket</div>
+        <div class="sub-tab" data-gallery="women-tshirts">T-Shirts</div>
+        <div class="sub-tab" data-gallery="women-shirts">Shirts</div>
+        <div class="sub-tab" data-gallery="women-pants">Pants</div>
+    </div>
 
+</div>
 <!-- BOYS -->
 <div class="tab-content" id="boys">
-  <div class="sub-tabs">
-    <div class="sub-tab" data-images='["images/boys-sweat1.jpg","images/boys-sweat2.jpg"]'>Boy’s SweatShirt</div>
-    <div class="sub-tab" data-images='[]'>Sweatpants</div>
-    <div class="sub-tab" data-images='[]'>Shirts</div>
-    <div class="sub-tab" data-images='[]'>Pants</div>
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="boys-sweatshirt">Boy’s SweatShirt</div>
+        <div class="sub-tab" data-gallery="boys-sweatpants">Sweatpants</div>
+        <div class="sub-tab" data-gallery="boys-shirts">Shirts</div>
+        <div class="sub-tab" data-gallery="boys-pants">Pants</div>
+    </div>
+    
   </div>
+<!-- BABY -->
+<div class="tab-content" id="baby">
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="baby-sweatshirt">BABY SweatShirt</div>
+        <div class="sub-tab" data-gallery="baby-sweatpants">Sweatpants</div>
+        <div class="sub-tab" data-gallery="baby-shirts">Shirts</div>
+        <div class="sub-tab" data-gallery="baby-pants">Pants</div>
+    </div>
+  
 </div>
 
 <!-- GIRLS -->
 <div class="tab-content" id="girls">
-  <div class="sub-tabs">
-    <div class="sub-tab" data-images='["images/girls-sweat1.jpg","images/girls-sweat2.jpg"]'>Girl’s SweatShirt</div>
-    <div class="sub-tab" data-images='[]'>Girl’s Shirt</div>
-    <div class="sub-tab" data-images='[]'>Sweatpants</div>
-    <div class="sub-tab" data-images='[]'>Pants</div>
-    <div class="sub-tab" data-images='[]'>Pajama</div>
-  </div>
-</div>
-
-<!-- BABY -->
-<div class="tab-content" id="baby">
-  <div class="sub-tabs">
-    <div class="sub-tab" data-images='["images/baby-sweat1.jpg","images/baby-sweat2.jpg"]'>BABY SweatShirt</div>
-    <div class="sub-tab" data-images='[]'>Sweatpants</div>
-    <div class="sub-tab" data-images='[]'>Shirts</div>
-    <div class="sub-tab" data-images='[]'>Pants</div>
-  </div>
-</div>
-
-<!-- Lightbox -->
-<div id="lightbox">
-    <span class="close">&times;</span>
-    <img src="" alt="Gallery Image">
-    <div class="controls">
-        <button id="prev">prev</button>
-        <button id="next">next</button>
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="girls-sweatshirt">Girl’s SweatShirt</div>
+        <div class="sub-tab" data-gallery="girls-shirt">Girl’s Shirt</div>
+        <div class="sub-tab" data-gallery="girls-sweatpants">Sweatpants</div>
+        <div class="sub-tab" data-gallery="girls-pants">Pants</div>
+        <div class="sub-tab" data-gallery="girls-pajama">Pajama</div>
     </div>
-</div>
-
-<script>
-// التحكم في التابات الرئيسية
+    
+    </div>
+   <script>
 const tabs = document.querySelectorAll('.tab');
+
+// Accordion لكل التابات الرئيسية
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         const targetContent = document.getElementById(tab.dataset.target);
+        const subTabs = targetContent.querySelector('.sub-tabs');
+
+        // toggle sub-tabs
+        const visible = subTabs.style.display === 'flex';
+        subTabs.style.display = visible ? 'none' : 'flex';
+        tab.querySelector('.arrow').textContent = visible ? '▼' : '▲';
+
+        // تفعيل التاب الرئيسي
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
 
+        // اظهار تاب المحتوى وإخفاء الباقي
         document.querySelectorAll('.tab-content').forEach(tc => {
-            tc.style.display = tc.id === targetContent.id ? 'flex' : 'none';
+            tc.style.display = tc.id === targetContent.id ? 'block' : 'none';
         });
     });
 });
 
-// Lightbox setup
-const lightbox = document.getElementById('lightbox');
-const lbImg = lightbox.querySelector('img');
-let currentImages = [];
-let currentIndex = 0;
-
-// التحكم في التابات الفرعية
-const subTabs = document.querySelectorAll('.sub-tab');
-subTabs.forEach(st => {
+// تبديل التبويبات الفرعية
+const subTabsAll = document.querySelectorAll('.sub-tab');
+subTabsAll.forEach(st => {
     st.addEventListener('click', () => {
-        subTabs.forEach(s => s.classList.remove('active'));
+        const parent = st.closest('.tab-content');
+        parent.querySelectorAll('.sub-tab').forEach(s => s.classList.remove('active'));
         st.classList.add('active');
-
-        // فتح اللايت بوكس فقط إذا في صور
-        currentImages = JSON.parse(st.dataset.images);
-        if(currentImages.length > 0){
-            currentIndex = 0;
-            lbImg.src = currentImages[currentIndex];
-            lightbox.style.display = 'flex';
-        }
     });
 });
 
-// أزرار التالي والسابق
-document.getElementById('next').addEventListener('click', () => {
-    if(currentImages.length === 0) return;
-    currentIndex = (currentIndex + 1) % currentImages.length;
-    lbImg.src = currentImages[currentIndex];
-});
-document.getElementById('prev').addEventListener('click', () => {
-    if(currentImages.length === 0) return;
-    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-    lbImg.src = currentImages[currentIndex];
-});
-
-// إغلاق اللايت بوكس
-lightbox.querySelector('.close').addEventListener('click', () => {
-    lightbox.style.display = 'none';
-});
-lightbox.addEventListener('click', (e) => {
-    if(e.target === lightbox) lightbox.style.display = 'none';
-});
 </script>
 
+
 </body>
+
 </html>
+
+
+
+
