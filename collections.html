@@ -14,6 +14,8 @@ body {
     background-repeat: no-repeat;
     color: #fff;
 }
+
+/* التابات الرئيسية */
 .tabs-box {
     background-color: rgba(0,0,0,0.6);
     padding: 15px 10px;
@@ -26,33 +28,117 @@ body {
     max-width: 100%;
     box-sizing: border-box;
 }
+
 .tab {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 8px;
-    background-color: rgba(255, 215, 0, 0.2);
-    color: #FFF;
+    background-color: rgba(255, 215, 0, 0.2); 
+    color: #FFF; 
     font-weight: bold;
+    transition: background 0.3s;
     display: flex;
     align-items: center;
-    transition: background 0.3s;
 }
+
 .tab.active {
-    background-color: rgba(255, 215, 0, 0.4);
+    background-color: rgba(255, 215, 0, 0.4); 
     color: #fff;
 }
-.arrow { margin-left:5px; cursor:pointer; }
-.tab-content { display: none; max-width:100%; margin:5px auto 20px; padding:0; background:none; }
-.sub-tabs { display:flex; flex-direction:column; gap:5px; margin:0; }
-.sub-tab { padding:4px 10px; font-size:14px; border-radius:4px; background-color: rgba(0,0,0,0.5); color:#fff; cursor:pointer; display:inline-block; transition: background 0.6s; }
-.sub-tab.active { background-color: rgba(255,215,0,0.6); color:#000; }
 
-.gallery-container { display:flex; margin-top:10px; }
-.thumbnail-list { display:flex; flex-direction:column; gap:10px; width:150px; }
-.thumbnail-list img { width:100%; border-radius:8px; cursor:pointer; border:2px solid transparent; }
-.thumbnail-list img.active-thumb { border-color:yellow; }
-.main-image { flex:1; display:flex; justify-content:center; align-items:center; }
-.main-image img { max-width:100%; max-height:500px; border-radius:8px; }
+.arrow {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* المحتوى الفرعي */
+.tab-content {
+    display: none;
+    max-width: 100%;
+    margin: 5px auto 20px;
+    padding: 0;
+    background: none;
+}
+
+.sub-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0;
+}
+
+.sub-tab {
+    padding: 4px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    display: inline-block; 
+    cursor: pointer;
+    transition: background 0.6s;
+}
+
+.sub-tab.active {
+    background-color: rgba(255,215,0,0.6);
+    color: #000;
+}
+
+/* Lightbox */
+#lightbox {
+    display: none;
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+#lightbox img {
+    max-width: 80%;
+    max-height: 70%;
+    border-radius: 8px;
+}
+
+#lightbox .controls {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+#lightbox button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255,215,0,0.6);
+    color: #000;
+    font-weight: bold;
+}
+
+#lightbox .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .tab {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    .sub-tab {
+        padding: 3px 8px;
+        font-size: 12px;
+    }
+}
 </style>
 </head>
 <body>
@@ -65,122 +151,129 @@ body {
     <div class="tab" data-target="baby">BABY <span class="arrow">▼</span></div>
 </div>
 
-<!-- مثال لقسم Men -->
+<!-- MEN -->
 <div class="tab-content" id="men">
-    <div class="sub-tabs">
-        <div class="sub-tab active" data-gallery="men-sweatshirt">Sweatshirt</div>
-        <div class="sub-tab" data-gallery="men-pullover">Men Pullover</div>
-        <div class="sub-tab" data-gallery="men-jacket">Jacket</div>
-    </div>
-    <div class="gallery-container">
-        <div class="thumbnail-list"></div>
-        <div class="main-image"></div>
-    </div>
+  <div class="sub-tabs">
+    <div class="sub-tab" data-images='["images/men-sweat1.jpg","images/men-sweat2.jpg"]'>Sweatshirt</div>
+    <div class="sub-tab" data-images='[]'>Men Pullover</div>
+    <div class="sub-tab" data-images='[]'>Jacket</div>
+    <div class="sub-tab" data-images='[]'>T-Shirts</div>
+    <div class="sub-tab" data-images='[]'>Shirts</div>
+    <div class="sub-tab" data-images='[]'>Pants</div>
+  </div>
 </div>
 
-<!-- قسم Women -->
+<!-- WOMEN -->
 <div class="tab-content" id="women">
-    <div class="sub-tabs">
-        <div class="sub-tab active" data-gallery="women-pajamas">Pajamas</div>
-    </div>
-    <div class="gallery-container">
-        <div class="thumbnail-list"></div>
-        <div class="main-image"></div>
-    </div>
+  <div class="sub-tabs">
+    <div class="sub-tab" data-images='["images/women-paj1.jpg","images/women-paj2.jpg"]'>Pajamas</div>
+    <div class="sub-tab" data-images='[]'>Basics</div>
+    <div class="sub-tab" data-images='[]'>Basics Jacket</div>
+    <div class="sub-tab" data-images='[]'>T-Shirts</div>
+    <div class="sub-tab" data-images='[]'>Shirts</div>
+    <div class="sub-tab" data-images='[]'>Pants</div>
+  </div>
 </div>
 
-<!-- قسم Boys -->
+<!-- BOYS -->
 <div class="tab-content" id="boys">
-    <div class="sub-tabs">
-        <div class="sub-tab active" data-gallery="boys-sweatshirt">Boy’s SweatShirt</div>
-    </div>
-    <div class="gallery-container">
-        <div class="thumbnail-list"></div>
-        <div class="main-image"></div>
-    </div>
+  <div class="sub-tabs">
+    <div class="sub-tab" data-images='["images/boys-sweat1.jpg","images/boys-sweat2.jpg"]'>Boy’s SweatShirt</div>
+    <div class="sub-tab" data-images='[]'>Sweatpants</div>
+    <div class="sub-tab" data-images='[]'>Shirts</div>
+    <div class="sub-tab" data-images='[]'>Pants</div>
+  </div>
 </div>
 
-<!-- قسم Girls -->
+<!-- GIRLS -->
 <div class="tab-content" id="girls">
-    <div class="sub-tabs">
-        <div class="sub-tab active" data-gallery="girls-sweatshirt">Girl’s SweatShirt</div>
-    </div>
-    <div class="gallery-container">
-        <div class="thumbnail-list"></div>
-        <div class="main-image"></div>
-    </div>
+  <div class="sub-tabs">
+    <div class="sub-tab" data-images='["images/girls-sweat1.jpg","images/girls-sweat2.jpg"]'>Girl’s SweatShirt</div>
+    <div class="sub-tab" data-images='[]'>Girl’s Shirt</div>
+    <div class="sub-tab" data-images='[]'>Sweatpants</div>
+    <div class="sub-tab" data-images='[]'>Pants</div>
+    <div class="sub-tab" data-images='[]'>Pajama</div>
+  </div>
 </div>
 
-<!-- قسم Baby -->
+<!-- BABY -->
 <div class="tab-content" id="baby">
-    <div class="sub-tabs">
-        <div class="sub-tab active" data-gallery="baby-sweatshirt">BABY SweatShirt</div>
-    </div>
-    <div class="gallery-container">
-        <div class="thumbnail-list"></div>
-        <div class="main-image"></div>
+  <div class="sub-tabs">
+    <div class="sub-tab" data-images='["images/baby-sweat1.jpg","images/baby-sweat2.jpg"]'>BABY SweatShirt</div>
+    <div class="sub-tab" data-images='[]'>Sweatpants</div>
+    <div class="sub-tab" data-images='[]'>Shirts</div>
+    <div class="sub-tab" data-images='[]'>Pants</div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+    <span class="close">&times;</span>
+    <img src="" alt="Gallery Image">
+    <div class="controls">
+        <button id="prev">prev</button>
+        <button id="next">next</button>
     </div>
 </div>
 
 <script>
+// التحكم في التابات الرئيسية
 const tabs = document.querySelectorAll('.tab');
-const subTabsAll = document.querySelectorAll('.sub-tab');
-
-// بيانات الصور لكل تاب فرعي
-const galleryData = {
-    'men-sweatshirt': ['images/men-sweat1.jpg','images/men-sweat2.jpg'],
-    'men-pullover': [],
-    'men-jacket': [],
-    'women-pajamas': ['images/women-paj1.jpg','images/women-paj2.jpg'],
-    'boys-sweatshirt': ['images/boys-sweat1.jpg','images/boys-sweat2.jpg'],
-    'girls-sweatshirt': ['images/girls-sweat1.jpg','images/girls-sweat2.jpg'],
-    'baby-sweatshirt': ['images/baby-sweat1.jpg','images/baby-sweat2.jpg']
-};
-
-// التابات الرئيسية
-tabs.forEach(tab=>{
-    tab.addEventListener('click',()=>{
-        const targetContent=document.getElementById(tab.dataset.target);
-        tabs.forEach(t=>t.classList.remove('active'));
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const targetContent = document.getElementById(tab.dataset.target);
+        tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
-        document.querySelectorAll('.tab-content').forEach(tc=>{ tc.style.display=(tc.id===targetContent.id)?'block':'none'; });
-        // افتراضياً نضغط أول تاب فرعي
-        const firstSub=targetContent.querySelector('.sub-tab');
-        if(firstSub) firstSub.click();
-    });
-});
 
-// التابات الفرعية
-subTabsAll.forEach(st=>{
-    st.addEventListener('click',()=>{
-        const parent = st.closest('.tab-content');
-        parent.querySelectorAll('.sub-tab').forEach(s=>s.classList.remove('active'));
-        st.classList.add('active');
-
-        const galleryKey = st.dataset.gallery;
-        const images = galleryData[galleryKey] || [];
-
-        const thumbList = parent.querySelector('.thumbnail-list');
-        const mainImgDiv = parent.querySelector('.main-image');
-        thumbList.innerHTML='';
-        mainImgDiv.innerHTML='';
-
-        images.forEach((imgSrc,index)=>{
-            const thumb=document.createElement('img');
-            thumb.src=imgSrc;
-            thumb.classList.add(index===0?'active-thumb':'');
-            thumb.addEventListener('click',()=>{
-                mainImgDiv.innerHTML=`<img src="${imgSrc}">`;
-                parent.querySelectorAll('.thumbnail-list img').forEach(i=>i.classList.remove('active-thumb'));
-                thumb.classList.add('active-thumb');
-            });
-            thumbList.appendChild(thumb);
-            if(index===0) mainImgDiv.innerHTML=`<img src="${imgSrc}">`;
+        document.querySelectorAll('.tab-content').forEach(tc => {
+            tc.style.display = tc.id === targetContent.id ? 'flex' : 'none';
         });
     });
 });
 
+// Lightbox setup
+const lightbox = document.getElementById('lightbox');
+const lbImg = lightbox.querySelector('img');
+let currentImages = [];
+let currentIndex = 0;
+
+// التحكم في التابات الفرعية
+const subTabs = document.querySelectorAll('.sub-tab');
+subTabs.forEach(st => {
+    st.addEventListener('click', () => {
+        subTabs.forEach(s => s.classList.remove('active'));
+        st.classList.add('active');
+
+        // فتح اللايت بوكس فقط إذا في صور
+        currentImages = JSON.parse(st.dataset.images);
+        if(currentImages.length > 0){
+            currentIndex = 0;
+            lbImg.src = currentImages[currentIndex];
+            lightbox.style.display = 'flex';
+        }
+    });
+});
+
+// أزرار التالي والسابق
+document.getElementById('next').addEventListener('click', () => {
+    if(currentImages.length === 0) return;
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    lbImg.src = currentImages[currentIndex];
+});
+document.getElementById('prev').addEventListener('click', () => {
+    if(currentImages.length === 0) return;
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    lbImg.src = currentImages[currentIndex];
+});
+
+// إغلاق اللايت بوكس
+lightbox.querySelector('.close').addEventListener('click', () => {
+    lightbox.style.display = 'none';
+});
+lightbox.addEventListener('click', (e) => {
+    if(e.target === lightbox) lightbox.style.display = 'none';
+});
 </script>
+
 </body>
 </html>
-
