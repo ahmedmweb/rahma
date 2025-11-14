@@ -239,7 +239,7 @@ tabs.forEach(tab => {
 
         // اظهار تاب المحتوى وإخفاء الباقي
         document.querySelectorAll('.tab-content').forEach(tc => {
-            tc.style.display = tc.id === targetContent.id ? 'block' : 'none';
+            tc.style.display = tc.id === targetContent.id ? 'flex' : 'none';
         });
     });
 });
@@ -297,5 +297,6 @@ document.querySelectorAll('.tab-content').forEach(tc => {
 
 </body>
 </html>
+
 
 
