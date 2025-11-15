@@ -260,6 +260,9 @@ tabs.forEach(tab => {
         const subTabs = targetContent.querySelector('.sub-tabs');
         const visible = subTabs.style.display === 'flex';
         subTabs.style.display = visible ? 'none' : 'flex';
+         if(visible) {
+      targetContent.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
+    }
         tab.querySelector('.arrow').textContent = visible ? '▼' : '▲';
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
@@ -302,6 +305,7 @@ document.querySelectorAll('.tab-content').forEach(tc => {
 
 </body>
 </html>
+
 
 
 
