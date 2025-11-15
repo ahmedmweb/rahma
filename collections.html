@@ -150,6 +150,32 @@ background-color: #fff;
                 font-size: 12px;
             }
         }
+ /* شريط الأخبار */
+        .news-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 0;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .news-track {
+            display: flex;
+            white-space: nowrap;
+            color: #FFf;
+            font-weight: bold;
+            font-size: 18px;
+            animation: scrollNews 12s linear infinite;
+        }
+
+        @keyframes scrollNews {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
     </style>
 </head>
 <body>
@@ -266,6 +292,13 @@ document.querySelectorAll('.tab-content').forEach(tc => {
     }
 });
 </script>
+
+ <!-- شريط الأخبار أسفل الصفحة -->
+    <div class="news-bar">
+        <div class="news-track">
+             🔥 The latest offers have just arrived 🔥     &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;       🔥big discounts this week🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥check out the new collection now! 🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥 The latest offers have just arrived 🔥     &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;       🔥big discounts this week🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥check out the new collection now! 🔥
+        </div>
+    </div>
 
 </body>
 </html>
