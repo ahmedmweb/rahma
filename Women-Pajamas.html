@@ -24,19 +24,18 @@ h1 { margin-bottom: 20px; }
     border-radius: 5px; 
     cursor: pointer; 
     font-weight: bold; 
+    z-index: 10001;
 }
 </style>
 </head>
 <body>
 <h1>Women Pajamas Collection</h1>
+    <!-- Home button خارج ال Modal -->
+<button id="home-btn">Home</button>
 <div class="gallery" id="women-gallery"></div>
 <div id="gallery-modal">
     <span id="close-modal" style="position:absolute; top:20px; right:30px; font-size:30px;">&times;</span>
-    
-    <!-- زرار Home الجديد -->
-    <button id="home-btn">Home</button>
-    
-    <img id="modal-img" src="">
+        <img id="modal-img" src="">
     <div style="margin-top:10px;">
         <button id="prev-btn" style="padding:10px 15px; margin-right:10px; background-color:#ff5722; color:#000; border:none; border-radius:5px;">◀</button>
         <button id="next-btn" style="padding:10px 15px; background-color:#4caf50; color:#000; border:none; border-radius:5px;">▶</button>
@@ -59,11 +58,15 @@ function openModal(images,index){ currentImages = images; currentIndex = index; 
 closeModal.onclick = ()=>{ modal.style.display='none'; };
 prevBtn.onclick = ()=>{ currentIndex=(currentIndex-1+currentImages.length)%currentImages.length; modalImg.src=currentImages[currentIndex]; };
 nextBtn.onclick = ()=>{ currentIndex=(currentIndex+1)%currentImages.length; modalImg.src=currentImages[currentIndex]; };
-homeBtn.onclick = () => {
-   window.location.href = 'https://ahmedmweb.github.io/rahma/collections.html';
-};
+// Home button دائمًا ظاهر خارج ال Modal
+if(homeBtn){
+    homeBtn.onclick = () => {
+        window.location.href = 'https://ahmedmweb.github.io/rahma/collections.html';
+    };
+}
 </script>
 </body>
 </html>
+
 
 
