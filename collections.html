@@ -119,24 +119,25 @@ background-color: #fff;
         }
 
         /* جاليري الصور */
-        .gallery {
+       .gallery {
             display: none;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 10px;
+            justify-content: center;
             margin-top: 10px;
         }
 
         .gallery img {
-            width: 100%;
-            max-width: 200px;
-            height: auto;
+            width: 200px;
             border-radius: 8px;
-            transition: transform 0.3s;
             cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .gallery img:hover {
             transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
         }
 
         @media (max-width: 768px) {
@@ -149,6 +150,29 @@ background-color: #fff;
                 padding: 3px 8px;
                 font-size: 12px;
             }
+        }
+        /* Modal */
+        #gallery-modal {
+            display: none;
+            position: fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10000;
+        }
+
+        #gallery-modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        #gallery-modal span, #gallery-modal button {
+            cursor: pointer;
         }
  /* شريط الأخبار */
         .news-bar {
@@ -254,48 +278,107 @@ background-color: #fff;
 
 <script>
 const tabs = document.querySelectorAll('.tab');
+
+// Accordion لكل التابات الرئيسية
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         const targetContent = document.getElementById(tab.dataset.target);
         const subTabs = targetContent.querySelector('.sub-tabs');
+
+        // toggle sub-tabs
         const visible = subTabs.style.display === 'flex';
         subTabs.style.display = visible ? 'none' : 'flex';
-         if(visible) {
-      targetContent.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
-    }
         tab.querySelector('.arrow').textContent = visible ? '▼' : '▲';
+
+        // تفعيل التاب الرئيسي
         tabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
+
+        // اظهار تاب المحتوى وإخفاء الباقي
         document.querySelectorAll('.tab-content').forEach(tc => {
             tc.style.display = tc.id === targetContent.id ? 'block' : 'none';
         });
+
+        // اخفاء كل الجاليريات عند اغلاق التابات
+        if(visible){
+            targetContent.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
+        }
     });
 });
 
-// تبديل التبويبات الفرعية وعرض الجاليري
+// تبديل التبويبات الفرعية
 const subTabsAll = document.querySelectorAll('.sub-tab');
 subTabsAll.forEach(st => {
     st.addEventListener('click', () => {
         const parent = st.closest('.tab-content');
         parent.querySelectorAll('.sub-tab').forEach(s => s.classList.remove('active'));
         st.classList.add('active');
+
+        // اخفاء كل الجاليريات
         parent.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
-        const galleryId = st.dataset.gallery + '-gallery';
-        const gallery = document.getElementById(galleryId);
-        if (gallery) gallery.style.display = 'flex';
+
+        // اظهار جاليري الصور الخاصة بالتاب الفرعي
+        showGallery(st.dataset.gallery);
     });
 });
 
-// اظهار الجاليري للتاب الفرعي النشط عند تحميل الصفحة
-document.querySelectorAll('.tab-content').forEach(tc => {
-    const activeSub = tc.querySelector('.sub-tab.active');
-    if (activeSub) {
-        const gallery = document.getElementById(activeSub.dataset.gallery + '-gallery');
-        if (gallery) gallery.style.display = 'flex';
-    }
-});
-</script>
+// مصفوفة الصور
+const galleryImages = {
+    'men-sweatshirt': [
+        'https://ahmedmweb.github.io/rahma/images/men-sweat1.jpg',
+        'https://ahmedmweb.github.io/rahma/images/men-sweat2.jpg'
+    ],
+    'men-pullover': [
+        'https://ahmedmweb.github.io/rahma/images/men-pullover1.jpg'
+    ],
+    'women-pajamas': [
+        'https://ahmedmweb.github.io/rahma/images/women-pajamas1.jpg'
+    ]
+};
 
+// دالة اظهار الصور
+function showGallery(tabName){
+    const gallery = document.getElementById(tabName + '-gallery');
+    if(!gallery) return;
+    gallery.innerHTML = '';
+
+    galleryImages[tabName].forEach((src, i)=>{
+        const img = document.createElement('img');
+        img.src = src;
+        img.onclick = ()=>{ openModal(galleryImages[tabName], i); };
+        gallery.appendChild(img);
+    });
+
+    gallery.style.display = 'flex';
+}
+
+// Modal
+let currentImages = [];
+let currentIndex = 0;
+const modal = document.getElementById('gallery-modal');
+const modalImg = document.getElementById('modal-img');
+const closeModal = document.getElementById('close-modal');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+function openModal(images, index){
+    currentImages = images;
+    currentIndex = index;
+    modal.style.display = 'flex';
+    modalImg.src = currentImages[currentIndex];
+}
+
+closeModal.onclick = ()=>{ modal.style.display = 'none'; };
+prevBtn.onclick = ()=>{ 
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    modalImg.src = currentImages[currentIndex];
+};
+nextBtn.onclick = ()=>{
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    modalImg.src = currentImages[currentIndex];
+};
+    </script>
+    
  <!-- شريط الأخبار أسفل الصفحة -->
     <div class="news-bar">
         <div class="news-track">
@@ -305,6 +388,7 @@ document.querySelectorAll('.tab-content').forEach(tc => {
 
 </body>
 </html>
+
 
 
 
