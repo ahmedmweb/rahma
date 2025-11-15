@@ -60,13 +60,15 @@ prevBtn.onclick = ()=>{ currentIndex=(currentIndex-1+currentImages.length)%curre
 nextBtn.onclick = ()=>{ currentIndex=(currentIndex+1)%currentImages.length; modalImg.src=currentImages[currentIndex]; };
 // Home button دائمًا ظاهر خارج ال Modal
 if(homeBtn){
-    homeBtn.onclick = () => {
-        window.location.href = 'https://ahmedmweb.github.io/rahma/collections.html';
-    };
-}
+        homeBtn.addEventListener('click', () => {
+            window.location.href = 'https://ahmedmweb.github.io/rahma/collections.html';
+        });
+    }
+});
 </script>
 </body>
 </html>
+
 
 
 
