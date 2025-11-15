@@ -28,8 +28,8 @@ h1 { margin-bottom: 20px; }
 </div>
 <script>
 const galleryImages = [
-    'https://ahmedmweb.github.io/rahma/images/women-paj1.jpg',
-    'https://ahmedmweb.github.io/rahma/images/women-paj2.jpg'
+    'https://ahmedmweb.github.io/rahma/women/women-paj1.jpg',
+    'https://ahmedmweb.github.io/rahma/women/women-paj2.jpg'
 ];
 const gallery = document.getElementById('women-gallery');
 galleryImages.forEach((src,i)=>{ const img = document.createElement('img'); img.src = src; img.onclick = ()=>{ openModal(galleryImages,i); }; gallery.appendChild(img); });
@@ -46,3 +46,4 @@ nextBtn.onclick = ()=>{ currentIndex=(currentIndex+1)%currentImages.length; moda
 </script>
 </body>
 </html>
+
