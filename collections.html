@@ -39,6 +39,12 @@ font-weight: bold;
  color: #fff;
  text-decoration: none; 
 }
+        @media (max-width: 768px) {
+    .home-link {
+        font-size: 14px;  /* يصغر للموبايل */
+        left: 6px;        /* يقرب من الطرف */
+    }
+}
 
  .home-triangles {
  position: absolute;
@@ -140,15 +146,15 @@ background-color: #fff;
             box-shadow: 0 8px 16px rgba(0,0,0,0.5);
         }
 
-        @media (max-width: 768px) {
+       @media (max-width: 768px) {
             .tab {
-                padding: 8px 12px;
-                font-size: 14px;
+                padding: 2px 2px;
+                font-size: 10.5px;
             }
 
             .sub-tab {
-                padding: 3px 8px;
-                font-size: 12px;
+                padding: 4px 8px;
+                font-size: 10px;
             }
         }
         /* Modal */
@@ -407,6 +413,7 @@ nextBtn.onclick = ()=>{
 </style>
 </body>
 </html>
+
 
 
 
