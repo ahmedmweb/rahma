@@ -16,6 +16,32 @@
             color: #fff;
         }
 
+        /* Mobile Header */
+        .mobile-header {
+            display: none;
+            justify-content: right; /* HOME يسار، الهامبرجر يمين */
+            align-items: center;
+            padding: 10px;
+        }
+        .mobile-header .home-link {
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+        }
+
         /* الصندوق الأسود للتابات الرئيسية */
         .tabs-box {
             background-color: rgba(0,0,0,0.6);
@@ -26,46 +52,25 @@
             justify-content: center;          
             gap: 15px;                        
             margin: 10px auto;
-           max-width: 100%; /* بدل 900px */
+            max-width: 100%; /* بدل 900px */
             box-sizing: border-box;                
         }
 
-/* كلمة HOME */ 
-.home-link {
- position: absolute;
- left: 10px;
- font-size: 22px; 
-font-weight: bold;
- color: #fff;
- text-decoration: none; 
-}
+        /* كلمة HOME */ 
+        .home-link {
+            position: absolute;
+            left: 10px;
+            font-size: 22px; 
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none; 
+        }
         @media (max-width: 768px) {
-    .home-link {
-        font-size: 14px;  /* يصغر للموبايل */
-        left: 6px;        /* يقرب من الطرف */
-    }
-}
-
- .home-triangles {
- position: absolute;
- top: 40px; /* تحت HOME مباشرة */
- left: 10px; 
-display: flex; 
-flex-direction: column; 
-gap: 4px; 
-opacity: 0; /* مخفية افتراضياً */ 
-transition: opacity 0.3s;
- }
-
- .home-triangles span { 
-width: 10px;
- height: 10px; 
-background-color: #fff;
- clip-path: polygon(50% 0%, 0% 100%, 100% 100%); /* مثلث صغير */
- } 
-
-/* تظهر عند hover على HOME */
- .home-link:hover + .home-triangles { opacity: 1; }
+            .home-link {
+                font-size: 14px;  /* يصغر للموبايل */
+                left: 6px;        /* يقرب من الطرف */
+            }
+        }
 
         /* التابات الرئيسية */
         .tab {
@@ -125,7 +130,7 @@ background-color: #fff;
         }
 
         /* جاليري الصور */
-       .gallery {
+        .gallery {
             display: none;
             flex-wrap: wrap;
             gap: 10px;
@@ -146,17 +151,32 @@ background-color: #fff;
             box-shadow: 0 8px 16px rgba(0,0,0,0.5);
         }
 
-       @media (max-width: 768px) {
+        @media (max-width: 768px) {
             .tab {
-                padding: 2px 2px;
-                font-size: 10.5px;
+                padding: 4px 4px;
+                font-size: 11px;
             }
 
             .sub-tab {
                 padding: 4px 8px;
                 font-size: 10px;
             }
+
+            .mobile-header { display: flex; }
+
+            /* نخفي HOME من tabs-box على الموبايل */
+            .tabs-box > .home-link { display: none; }
+
+            /* نعرض التابات فقط عند الضغط على الهامبرجر */
+            .tabs-box { display: none; flex-direction: column; align-items: flex-start; gap: 10px; width:90%; margin: 10 10px; }
+.tabs-box.show-mobile-tabs { display: flex; }
+
+            .tab { width: 90%; justify-content: center; }
+            .tab .arrow { display: flex;width:100%; margin: 10 10px; }
+
+            #whatsapp-btn { width: 30px; height: 30px; bottom: 30px; left: 10px; }
         }
+
         /* Modal */
         #gallery-modal {
             display: none;
@@ -180,7 +200,8 @@ background-color: #fff;
         #gallery-modal span, #gallery-modal button {
             cursor: pointer;
         }
- /* شريط الأخبار */
+
+        /* شريط الأخبار */
         .news-bar {
             position: fixed;
             bottom: 0;
@@ -206,12 +227,39 @@ background-color: #fff;
             100% { transform: translateX(-50%); }
         }
 
+        /* WhatsApp Button */
+        #whatsapp-btn {
+            position: fixed;
+            bottom: 60px;
+            LEFT: 15px;
+            width: 50px;
+            height: 50px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10002;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.9);
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
-<!-- رقم 2: الصندوق الأسود الذي يحوي التابات الرئيسية -->
+
+<!-- Mobile Header -->
+<div class="mobile-header">
+    <a href="index.html" class="home-link">HOME</a>
+    <div class="hamburger" onclick="toggleMobileTabs()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+<!-- الصندوق الأسود الذي يحوي التابات الرئيسية -->
 <div class="tabs-box">
-    <a href="index.html" class="home-link">HOME</a> <!-- هنا ضفت HOME -->
+    <a href="index.html" class="home-link">HOME</a>
     <div class="tab" data-target="men">MEN <span class="arrow">▼</span></div>
     <div class="tab" data-target="women">WOMEN <span class="arrow">▼</span></div>
     <div class="tab" data-target="boys">BOYS <span class="arrow">▼</span></div>
@@ -219,6 +267,7 @@ background-color: #fff;
     <div class="tab" data-target="baby">BABY <span class="arrow">▼</span></div>
 </div>
 
+<!-- المحتوى الخاص بكل تاب -->
 <!-- MEN -->
 <div class="tab-content" id="men">
     <div class="sub-tabs">
@@ -230,7 +279,6 @@ background-color: #fff;
         <div class="sub-tab" data-gallery="men-pants">Pants</div>
     </div>
 </div>
-
 
 <!-- WOMEN -->
 <div class="tab-content" id="women">
@@ -251,7 +299,6 @@ background-color: #fff;
         <div class="sub-tab" data-gallery="boys-tshirts">T-Shirts</div>
         <div class="sub-tab" data-gallery="boys-Pajamas">Pajamas</div>
     </div>
-  
 </div>
 
 <!-- BABY -->
@@ -260,7 +307,6 @@ background-color: #fff;
         <div class="sub-tab active" data-gallery="baby-outwear">BABY OUTWEAR</div>
         <div class="sub-tab" data-gallery="baby-Pajamas">Pajamas</div>
     </div>
-   
 </div>
 
 <!-- GIRLS -->
@@ -271,11 +317,16 @@ background-color: #fff;
         <div class="sub-tab" data-gallery="girls-tshirts">T-Shirts</div>
         <div class="sub-tab" data-gallery="girls-pajamas">Pajamas</div>
     </div>
-    
 </div>
 
 <script>
 const tabs = document.querySelectorAll('.tab');
+
+// Toggle التابات للموبايل
+function toggleMobileTabs() {
+    const tabsBox = document.querySelector('.tabs-box');
+    tabsBox.classList.toggle('show-mobile-tabs');
+}
 
 // Accordion لكل التابات الرئيسية
 tabs.forEach(tab => {
@@ -375,14 +426,15 @@ nextBtn.onclick = ()=>{
     currentIndex = (currentIndex + 1) % currentImages.length;
     modalImg.src = currentImages[currentIndex];
 };
-    </script>
-    
- <!-- شريط الأخبار أسفل الصفحة -->
-    <div class="news-bar">
-        <div class="news-track">
-             🔥 The latest offers have just arrived rahmaaaaaaaaaaaaaaa 🔥     &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;       🔥big discounts this week🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥check out the new collection now! 🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥 The latest offers have just arrived 🔥     &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;       🔥big discounts this week🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥check out the new collection now! 🔥
-        </div>
+</script>
+
+<!-- شريط الأخبار أسفل الصفحة -->
+<div class="news-bar">
+    <div class="news-track">
+         🔥 The latest offers have just arrived rahmaaaaaaaaaaaaaaa 🔥     &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;       🔥big discounts this week🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥check out the new collection now! 🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥 The latest offers have just arrived 🔥     &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;       🔥big discounts this week🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥check out the new collection now! 🔥
     </div>
+</div>
+
 <!-- WhatsApp Button -->
 <a href="https://wa.me/201550308158" target="_blank" id="whatsapp-btn">
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25" fill="#fff">
@@ -390,53 +442,5 @@ nextBtn.onclick = ()=>{
     </svg>
 </a>
 
-
-<style>
-#whatsapp-btn {
-    position: fixed;
-    bottom: 60px;
-    LEFT: 15px;
-    width: 50px;
-    height: 50px;
-    background-color: #25D366;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10002;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.9);
-    text-decoration: none;
-}
-
-
-
-</style>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
