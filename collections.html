@@ -6,14 +6,15 @@
     <title>Rahma Collections</title>
     <style>
         /* الخلفية العامة */
-        body {
+          body {
+            background-color: white;
+            height:0%;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-image: url('https://i.postimg.cc/LsdB3F3S/header-background.jpg');
-            background-size: cover;
-            background-position: center 0%;
-            background-repeat: repeat;
-            color: #fff;
+            /background-size: cover;/
+            /*!*background-image: url('https://i.postimg.cc/Hxv1xGhF/tsmym-bdwn-ʿnwan-1.png');*!*/
+            /background-repeat: repeat;/
+            color: #000;
         }
 
         /* Mobile Header */
@@ -21,13 +22,13 @@
             display: none;
             justify-content: right; /* HOME يسار، الهامبرجر يمين */
             align-items: center;
-            padding: 10px;
+            padding: 5px;
         }
         .mobile-header .home-link {
             font-size: 18px;
             font-weight: bold;
             text-decoration: none;
-            color: #fff;
+            color: #000;
         }
         .hamburger {
             display: flex;
@@ -36,23 +37,25 @@
             cursor: pointer;
         }
         .hamburger span {
-            width: 30px;
+            width: 20px;
             height: 3px;
-            background: #fff;
+            background: #000;
             border-radius: 2px;
         }
 
         /* الصندوق الأسود للتابات الرئيسية */
         .tabs-box {
-            background-color: rgba(0,0,0,0.6);
-            padding: 15px 10px;               
-            border-radius: 10px;              
+            background-color: rgba(0, 0, 0, 0.2);
+
+
+            padding: 10px 10px;               
+            border-radius: 20px;              
             display: flex;
             flex-wrap: wrap;
             justify-content: center;          
             gap: 15px;                        
             margin: 10px auto;
-            max-width: 100%; /* بدل 900px */
+            max-width: 50%; /* بدل 900px */
             box-sizing: border-box;                
         }
 
@@ -62,7 +65,7 @@
             left: 10px;
             font-size: 22px; 
             font-weight: bold;
-            color: #fff;
+            color: #000;
             text-decoration: none; 
         }
         @media (max-width: 768px) {
@@ -77,8 +80,8 @@
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 8px;
-            background-color: rgba(255, 215, 0, 0.2); 
-            color: #FFF; 
+            background-color: rgba(255, 255, 255, 0.6); 
+            color: #000; 
             font-weight: bold;
             transition: background 0.3s;
             display: flex;
@@ -207,7 +210,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(0,0,0,0.7);
+            background-color: #000;
+
             padding: 10px 0;
             overflow: hidden;
             z-index: 9999;
@@ -218,7 +222,7 @@
             white-space: nowrap;
             color: #FFf;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 14px;
             animation: scrollNews 3s linear infinite;
         }
 
@@ -232,8 +236,8 @@
             position: fixed;
             bottom: 60px;
             LEFT: 15px;
-            width: 50px;
-            height: 50px;
+            width: 35px;
+            height: 35px;
             background-color: #25D366;
             border-radius: 50%;
             display: flex;
@@ -318,7 +322,8 @@
         <div class="sub-tab" data-gallery="girls-pajamas">Pajamas</div>
     </div>
 </div>
-
+<div class="image2"><img src="https://i.postimg.cc/LsdB3F3S/header-background.jpg" width="100%" height="540px" /></div>
+</div>
 <script>
 const tabs = document.querySelectorAll('.tab');
 
@@ -437,11 +442,12 @@ nextBtn.onclick = ()=>{
 
 <!-- WhatsApp Button -->
 <a href="https://wa.me/201550308158" target="_blank" id="whatsapp-btn">
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 25 25" fill="#fff">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="#fff">
         <path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.555 4.089 1.519 5.805L0 24l6.381-1.519A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm6.422 17.647c-.198.557-1.152 1.097-1.59 1.168-.419.065-.93.091-3.01-.662-2.47-.876-4.056-3.061-4.177-3.171-.122-.11-1.01-1.28-1.01-2.444 0-1.164.647-1.735.88-1.976.228-.236.498-.236.663-.236.162 0 .327.002.47.009.15.008.35-.057.547.413.197.47.666 1.624.725 1.747.06.122.099.27.003.437-.096.165-.143.266-.288.413-.148.148-.31.327-.444.445-.15.13-.308.274-.13.538.177.266.786 1.29 1.686 2.086 1.155 1.065 2.129 1.38 2.42 1.536.288.157.457.132.625-.08.167-.21.722-.82.91-1.096.188-.278.37-.23.618-.138.246.092 1.554.732 1.824.864.27.133.45.2.515.312.063.11.063.634-.135 1.19z"/>
     </svg>
 </a>
 
 </body>
 </html>
+
 
