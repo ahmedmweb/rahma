@@ -59,6 +59,7 @@
             box-sizing: border-box;                
         }
 
+
         /* كلمة HOME */ 
         .home-link {
             position: absolute;
@@ -71,6 +72,7 @@
     padding: 2px 6px;   /* مسافة حول الكلمة */
     border-radius: 6px;  /* حواف دائرية خفيفة */
 }
+
         @media (max-width: 768px) {
             .home-link {
                 font-size: 14px;  /* يصغر للموبايل */
@@ -264,15 +266,23 @@ color:#fff;
             gap:25px;
             margin-top:35px;
             flex-wrap:wrap;
-            margin-bottom: 40px; /* المسافة اللي هتفصلهم */
+            margin-bottom: 40px; 
+background-color: rgba(128, 128, 128, 0.2);
+    padding: 20px 18px; 
+    border-radius: 20px;
+max-width: 1700px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
         }
 
         .product{
-            background:#111;
-            padding:15px;
+            background:#000;
+            padding:35px;
             width:180px;
             border-radius:28px;
             text-align:center;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .product img{
@@ -280,9 +290,10 @@ color:#fff;
             border-radius:8px;
         }
 
-        .product img{
-            width:90%;
-            border-radius:8px;
+        /* Hover effect للـ Products */
+        .product:hover{
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255,215,0,0.5);
         }
 
  /* ===== NEW ===== */
@@ -293,28 +304,40 @@ color:#fff;
 }
 
 .NEW-grid{
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    margin-top:35px;
-    flex-wrap:wrap;
-    margin-bottom:40px;
-}
+     display:flex;
+            justify-content:center;
+            gap:25px;
+            margin-top:35px;
+            flex-wrap:wrap;
+            margin-bottom: 40px; 
+background-color: rgba(128, 128, 128, 0.2);
+    padding: 20px 18px; 
+    border-radius: 20px;
+max-width: 1700px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+        }
 
 /* كارت جديد للسكشن NEW */
 .NEW-item{
-    background:#111;
-    padding:15px;
-    width:180px;
-    border-radius:28px;
-    text-align:center;
-}
-
+    background:#000;
+            padding:35px;
+            width:180px;
+            border-radius:28px;
+            text-align:center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 .NEW-item img{
     width:90%;
-    border-radius:8px;
-}
+            border-radius:8px;
+        }
 
+        /* Hover effect للـ NEW */
+        .NEW-item:hover{
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255,215,0,0.5);
+        }
 
     /* ===== Footer ===== */
         .footer{
@@ -500,7 +523,8 @@ color:#fff;
             <h3>Baby</h3>
         </div>
 
-    </div>
+
+
 </section>
 
 
