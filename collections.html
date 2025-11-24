@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahma Collections</title>
+ <style>
+        /* الخلفية العامة */
+          body {
+            background-color: black;
+            height:0%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /background-size: cover;/
+            /*!*background-image: url('https://i.postimg.cc/Hxv1xGhF/tsmym-bdwn-ʿnwan-1.png');*!*/
+            /background-repeat: repeat;/
+            color: #fff;
+        }
+
+        /* Mobile Header */
+        .mobile-header {
+            display: none;
+            justify-content: right; /* HOME يسار، الهامبرجر يمين */
+            align-items: center;
+            padding: 5px;
+        }
+        .mobile-header .home-link {
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #fff;
+        }
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            border-radius: 2px;
+        }
+
+        /* الصندوق الأسود للتابات الرئيسية */
+        .tabs-box {
+            background-color: rgba(128, 128, 128, 0.4);
+
+
+            padding: 10px 10px;               
+            border-radius: 20px;              
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;          
+            gap: 15px;                        
+            margin: 10px auto;
+            max-width: 50%; /* بدل 900px */
+            box-sizing: border-box;                
+        }
+
+        /* كلمة HOME */ 
+        .home-link {
+            position: absolute;
+            left: 10px;
+            font-size: 22px; 
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none; 
+         background-color: rgba(128, 128, 128, 0.6); /* لون البوكس */
+    padding: 2px 6px;   /* مسافة حول الكلمة */
+    border-radius: 6px;  /* حواف دائرية خفيفة */
+}
+        @media (max-width: 768px) {
+            .home-link {
+                font-size: 14px;  /* يصغر للموبايل */
+                left: 6px;        /* يقرب من الطرف */
+            }
+        }
+
+        /* التابات الرئيسية */
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1); 
+            color: #fff; 
+            font-weight: bold;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .tab.active {
+            background-color: rgba(255, 215, 0, 0.4); 
+            color: #fff;
+        }
+
+        /* السهم */
+        .arrow {
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        /* tab-content بدون أي صندوق أسود */
+        .tab-content {
+            display: none;
+            max-width: 100%;
+            margin: 5px auto 20px;
+            padding: 0;
+            background: none;
+        }
+
+        /* التابات الفرعية */
+        .sub-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin: 0;
+        }
+
+        .sub-tab {
+            padding: 4px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            display: inline-block; 
+            cursor: pointer;
+            transition: background 0.6s;
+        }
+
+        .sub-tab.active {
+            background-color: rgba(255,215,0,0.6);
+            color: #000;
+        }
+
+        /* جاليري الصور */
+        .gallery {
+            display: none;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .gallery img {
+            width: 200px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .tab {
+                padding: 4px 4px;
+                font-size: 11px;
+            }
+
+            .sub-tab {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+
+            .mobile-header { display: flex; }
+
+            /* نخفي HOME من tabs-box على الموبايل */
+            .tabs-box > .home-link { display: none; }
+
+            /* نعرض التابات فقط عند الضغط على الهامبرجر */
+            .tabs-box { display: none; flex-direction: column; align-items: flex-start; gap: 10px; width:90%; margin: 10 10px; }
+.tabs-box.show-mobile-tabs { display: flex; }
+
+            .tab { width: 90%; justify-content: center; }
+            .tab .arrow { display: flex;width:100%; margin: 10 10px; }
+
+            #whatsapp-btn { width: 30px; height: 30px; bottom: 30px; left: 10px; }
+        }
+
+        /* Modal */
+        #gallery-modal {
+            display: none;
+            position: fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10000;
+        }
+
+        #gallery-modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        #gallery-modal span, #gallery-modal button {
+            cursor: pointer;
+        }
+
+        /* شريط الأخبار */
+        .news-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000;
+
+            padding: 10px 0;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        .news-track {
+            display: flex;
+            white-space: nowrap;
+            color: #FFf;
+            font-weight: bold;
+            font-size: 14px;
+            animation: scrollNews 3s linear infinite;
+        }
+
+        @keyframes scrollNews {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* WhatsApp Button */
+        #whatsapp-btn {
+            position: fixed;
+            bottom: 60px;
+            LEFT: 15px;
+            width: 35px;
+            height: 35px;
+            background-color: #25D366;
+            border-radius: 100%;
+            border: 2px solid #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10002;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-decoration: none;
+        }
+  /* ===== Products ===== */
+        .products{
+            padding:40px;
+            text-align:center;
+color:#fff;
+        }
+
+        .product-grid{
+            display:flex;
+            justify-content:center;
+            gap:25px;
+            margin-top:35px;
+            flex-wrap:wrap;
+            margin-bottom: 40px; /* المسافة اللي هتفصلهم */
+        }
+
+        .product{
+            background:#111;
+            padding:15px;
+            width:180px;
+            border-radius:28px;
+            text-align:center;
+        }
+
+        .product img{
+            width:90%;
+            border-radius:8px;
+        }
+
+        .product img{
+            width:90%;
+            border-radius:8px;
+        }
+
+ /* ===== NEW ===== */
+.NEW{
+    padding:40px;
+    text-align:center;
+    color:#fff;
+}
+
+.NEW-grid{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    margin-top:35px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+/* كارت جديد للسكشن NEW */
+.NEW-item{
+    background:#111;
+    padding:15px;
+    width:180px;
+    border-radius:28px;
+    text-align:center;
+}
+
+.NEW-item img{
+    width:90%;
+    border-radius:8px;
+}
+
+
+    /* ===== Footer ===== */
+        .footer{
+            background:#111;
+            color:#fff;
+            border-radius:28px;
+            padding-top: 10px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            display:flex;
+            justify-content:space-around;
+            flex-wrap:wrap;
+        }
+
+        .footer-section a{
+            display:block;
+            color:#ddd;
+            text-decoration:none;
+            margin-top:5px;
+        }
+
+        .copy{
+            text-align:center;
+            width:100%;
+            margin-top:10px;
+            opacity:0.7;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Mobile Header -->
+<div class="mobile-header">
+    <a href="index.html" class="home-link">HOME</a>
+    <div class="hamburger" onclick="toggleMobileTabs()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+<!-- الصندوق الأسود الذي يحوي التابات الرئيسية -->
+<div class="tabs-box">
+    <a href="index.html" class="home-link">HOME</a>
+    <div class="tab" data-target="men">MEN <span class="arrow">▼</span></div>
+    <div class="tab" data-target="women">WOMEN <span class="arrow">▼</span></div>
+    <div class="tab" data-target="boys">BOYS <span class="arrow">▼</span></div>
+    <div class="tab" data-target="girls">GIRLS <span class="arrow">▼</span></div>
+    <div class="tab" data-target="baby">BABY <span class="arrow">▼</span></div>
+</div>
+
+<!-- المحتوى الخاص بكل تاب -->
+<!-- MEN -->
+<div class="tab-content" id="men">
+    <div class="sub-tabs">
+        <a class="sub-tab" href="men-sweatshirt.html">Sweatshirt</a>
+        <div class="sub-tab" data-gallery="men-Pajamas">Pajamas</div>
+        <div class="sub-tab" data-gallery="men-pullover">Pullover</div>
+        <div class="sub-tab" data-gallery="men-jacket">Jacket</div>
+        <div class="sub-tab" data-gallery="men-tshirts">T-Shirts</div>
+        <div class="sub-tab" data-gallery="men-pants">Pants</div>
+    </div>
+</div>
+
+<!-- WOMEN -->
+<div class="tab-content" id="women">
+    <div class="sub-tabs">
+        <a class="sub-tab" href="Women-Pajamas.html">Pajamas</a>
+        <div class="sub-tab" data-gallery="women-Sweatshirt">Sweatshirt</div>
+        <div class="sub-tab" data-gallery="women-jacket">Jacket</div>
+        <div class="sub-tab" data-gallery="women-tshirts">T-Shirts</div>
+        <div class="sub-tab" data-gallery="women-pants">Pants</div>
+    </div>
+</div>
+
+<!-- BOYS -->
+<div class="tab-content" id="boys">
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="boys-sweatshirt">Boy’s SweatShirt</div>
+        <div class="sub-tab" data-gallery="boys-sweatpants">Sweatpants</div>
+        <div class="sub-tab" data-gallery="boys-tshirts">T-Shirts</div>
+        <div class="sub-tab" data-gallery="boys-Pajamas">Pajamas</div>
+    </div>
+</div>
+
+<!-- BABY -->
+<div class="tab-content" id="baby">
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="baby-outwear">BABY OUTWEAR</div>
+        <div class="sub-tab" data-gallery="baby-Pajamas">Pajamas</div>
+    </div>
+</div>
+
+<!-- GIRLS -->
+<div class="tab-content" id="girls">
+    <div class="sub-tabs">
+        <div class="sub-tab active" data-gallery="girls-sweatshirt">Girl’s SweatShirt</div>
+        <div class="sub-tab" data-gallery="girls-sweatpants">Sweatpants</div>
+        <div class="sub-tab" data-gallery="girls-tshirts">T-Shirts</div>
+        <div class="sub-tab" data-gallery="girls-pajamas">Pajamas</div>
+    </div>
+</div>
+<div class="image2"><img src="https://www.cssigniter.com/woocommerce/rhodes/wp-content/uploads/sites/2/2020/04/hero01.jpg?w=640" width="100%" height="1000px" /></div>
+</div>
+
+</section>
+
+    <!--================ Products ================-->
+    <section class="products">
+        <h2>Collections</h2>
+
+        <div class="product-grid">
+
+            <!-- المنتج 1 -->
+            <div class="product">
+                <img src="https://i.postimg.cc/rp7V6PHL/girls-sweat2-jpg.jpg" alt="Product 1">
+                <!-- ↑ صورة المنتج رقم 1 -->
+                <h3>Man</h3>
+            </div>
+
+            <!-- المنتج 2 -->
+            <div class="product">
+                <img src="https://i.postimg.cc/5ys26qgd/BABY-Pants1-jpg.jpg" alt="Product 2">
+                <!-- ↑ صورة المنتج رقم 2 -->
+                <h3>Women</h3>
+            </div>
+
+            <!-- المنتج 3 -->
+            <div class="product">
+                <img src="https://i.postimg.cc/Fz8wWYs0/men-sweat1-jpg.jpg" alt="Product 3">
+                <!-- ↑ صورة المنتج رقم 3 -->
+                <h3>Boys</h3>
+            </div>
+
+ <!-- المنتج 4 -->
+            <div class="product">
+                <img src="https://i.postimg.cc/6pdFc5s8/women-paj1-jpg.jpg" alt="Product 3">
+                <!-- ↑ صورة المنتج رقم 4 -->
+                <h3>Girls</h3>
+            </div>
+
+<!-- المنتج 5 -->
+            <div class="product">
+                <img src="https://i.postimg.cc/Bbrw5RMh/boys-sweat2-jpg.jpg" alt="Product 3">
+                <!-- ↑ صورة المنتج رقم 5 -->
+                <h3>Baby</h3>
+            </div>
+        </div>
+
+ <section class="NEW">
+    <h2>NEW</h2>
+
+    <div class="NEW-grid">
+
+        <!-- المنتج 1 -->
+        <div class="NEW-item">
+            <img src="https://i.postimg.cc/rp7V6PHL/girls-sweat2-jpg.jpg" alt="Product 1">
+            <h3>Man</h3>
+        </div>
+
+        <!-- المنتج 2 -->
+        <div class="NEW-item">
+            <img src="https://i.postimg.cc/5ys26qgd/BABY-Pants1-jpg.jpg" alt="Product 2">
+            <h3>Women</h3>
+        </div>
+
+        <!-- المنتج 3 -->
+        <div class="NEW-item">
+            <img src="https://i.postimg.cc/Fz8wWYs0/men-sweat1-jpg.jpg" alt="Product 3">
+            <h3>Boys</h3>
+        </div>
+
+        <!-- المنتج 4 -->
+        <div class="NEW-item">
+            <img src="https://i.postimg.cc/6pdFc5s8/women-paj1-jpg.jpg" alt="Product 4">
+            <h3>Girls</h3>
+        </div>
+
+        <!-- المنتج 5 -->
+        <div class="NEW-item">
+            <img src="https://i.postimg.cc/Bbrw5RMh/boys-sweat2-jpg.jpg" alt="Product 5">
+            <h3>Baby</h3>
+        </div>
+
+    </div>
+</section>
+
+
+<script>
+
+const tabs = document.querySelectorAll('.tab');
+
+// Toggle التابات للموبايل
+function toggleMobileTabs() {
+    const tabsBox = document.querySelector('.tabs-box');
+    tabsBox.classList.toggle('show-mobile-tabs');
+}
+
+// Accordion لكل التابات الرئيسية
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const targetContent = document.getElementById(tab.dataset.target);
+        const subTabs = targetContent.querySelector('.sub-tabs');
+
+        // toggle sub-tabs
+        const visible = subTabs.style.display === 'flex';
+        subTabs.style.display = visible ? 'none' : 'flex';
+        tab.querySelector('.arrow').textContent = visible ? '▼' : '▲';
+
+        // تفعيل التاب الرئيسي
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // اظهار تاب المحتوى وإخفاء الباقي
+        document.querySelectorAll('.tab-content').forEach(tc => {
+            tc.style.display = tc.id === targetContent.id ? 'block' : 'none';
+        });
+
+        // اخفاء كل الجاليريات عند اغلاق التابات
+        if(visible){
+            targetContent.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
+        }
+    });
+});
+
+// تبديل التبويبات الفرعية
+const subTabsAll = document.querySelectorAll('.sub-tab');
+subTabsAll.forEach(st => {
+    st.addEventListener('click', () => {
+        const parent = st.closest('.tab-content');
+        parent.querySelectorAll('.sub-tab').forEach(s => s.classList.remove('active'));
+        st.classList.add('active');
+
+        // اخفاء كل الجاليريات
+        parent.querySelectorAll('.gallery').forEach(g => g.style.display = 'none');
+
+        // اظهار جاليري الصور الخاصة بالتاب الفرعي
+        showGallery(st.dataset.gallery);
+    });
+});
+
+// مصفوفة الصور
+const galleryImages = {
+    'men-sweatshirt': [
+        'https://ahmedmweb.github.io/rahma/images/men-sweat1.jpg',
+        'https://ahmedmweb.github.io/rahma/images/men-sweat2.jpg'
+    ],
+    'men-pullover': [
+        'https://ahmedmweb.github.io/rahma/images/men-pullover1.jpg'
+    ],
+    'women-pajamas': [
+        'https://ahmedmweb.github.io/rahma/images/women-paj1.jpg'
+    ]
+};
+
+// دالة اظهار الصور
+function showGallery(tabName){
+    const gallery = document.getElementById(tabName + '-gallery');
+    if(!gallery) return;
+    gallery.innerHTML = '';
+
+    galleryImages[tabName].forEach((src, i)=>{
+        const img = document.createElement('img');
+        img.src = src;
+        img.onclick = ()=>{ openModal(galleryImages[tabName], i); };
+        gallery.appendChild(img);
+    });
+
+    gallery.style.display = 'flex';
+}
+
+// Modal
+let currentImages = [];
+let currentIndex = 0;
+const modal = document.getElementById('gallery-modal');
+const modalImg = document.getElementById('modal-img');
+const closeModal = document.getElementById('close-modal');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+function openModal(images, index){
+    currentImages = images;
+    currentIndex = index;
+    modal.style.display = 'flex';
+    modalImg.src = currentImages[currentIndex];
+}
+
+closeModal.onclick = ()=>{ modal.style.display = 'none'; };
+prevBtn.onclick = ()=>{ 
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    modalImg.src = currentImages[currentIndex];
+};
+nextBtn.onclick = ()=>{
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    modalImg.src = currentImages[currentIndex];
+};
+</script>
+
+<!-- شريط الأخبار أسفل الصفحة -->
+<div class="news-bar">
+    <div class="news-track">
+         🔥 The latest offers have just arrived 🔥     &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;       🔥big discounts this week🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥check out the new collection now! 🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥 The latest offers have just arrived 🔥     &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;       🔥big discounts this week🔥      &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;      🔥check out the new collection now! 🔥 </div>
+    
+</div>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/201550308158" target="_blank" id="whatsapp-btn">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="#fff">
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.555 4.089 1.519 5.805L0 24l6.381-1.519A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm6.422 17.647c-.198.557-1.152 1.097-1.59 1.168-.419.065-.93.091-3.01-.662-2.47-.876-4.056-3.061-4.177-3.171-.122-.11-1.01-1.28-1.01-2.444 0-1.164.647-1.735.88-1.976.228-.236.498-.236.663-.236.162 0 .327.002.47.009.15.008.35-.057.547.413.197.47.666 1.624.725 1.747.06.122.099.27.003.437-.096.165-.143.266-.288.413-.148.148-.31.327-.444.445-.15.13-.308.274-.13.538.177.266.786 1.29 1.686 2.086 1.155 1.065 2.129 1.38 2.42 1.536.288.157.457.132.625-.08.167-.21.722-.82.91-1.096.188-.278.37-.23.618-.138.246.092 1.554.732 1.824.864.27.133.45.2.515.312.063.11.063.634-.135 1.19z"/>
+    </svg>
+</a>
+
+ <!--================ Footer ================-->
+    <footer class="footer">
+
+        <div class="footer-section">
+            <h4>Shop By</h4>
+            <a href="#">Man</a>
+            <a href="#">Women</a>
+            <a href="#">Boys</a>
+            <a href="#">Girls</a>
+            <a href="#">Baby</a>
+        </div>
+
+        <div class="footer-section">
+            <h4>Contact Us</h4>
+            <a href="https://www.facebook.com/share/172vWeNnf6/?mibextid=wwXIfr" target="_blank">Facebook</a>
+            <a href="mailto:roroover1@gmail.com" target="_blank">Gmail</a>
+        </div>
+
+        <p class="copy">© Rahma — Powered by A.M</p>
+
+    </footer>
+
+</body>
+</html>
