@@ -5,15 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rahma Collections</title>
  <style>
-     #bg-video{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1; /* يبقى تحت كل العناصر */
-}
+
         /* الخلفية العامة */
             background-color: black;
             height:0%;
@@ -470,6 +462,19 @@
 <video autoplay loop muted playsinline id="bg-video">
     <source src="video/bg.mp4" type="video/mp4">
 </video>
+        <style>
+
+    #bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* يبقى خلف كل العناصر */
+}
+        </style>
+
     
 </section>
 
@@ -707,6 +712,7 @@ nextBtn.onclick = ()=>{
 
 </body>
 </html>
+
 
 
 
