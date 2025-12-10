@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ahmedmweb.github.io/rahma/sitemap.xml
