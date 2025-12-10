@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- الصفحة الرئيسية (index.html) -->
+  <url>
+    <loc>https://ahmedmweb.github.io/rahma/index.html</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- صفحة Collections -->
+  <url>
+    <loc>https://ahmedmweb.github.io/rahma/collections.html</loc>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <!-- صفحة Contact -->
+  <url>
+    <loc>https://ahmedmweb.github.io/rahma/contact.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+</urlset>
